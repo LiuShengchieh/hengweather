@@ -68,7 +68,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     private TextView sportText;
 
-    private ImageView bingPicImag;
+    // private ImageView bingPicImag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +94,11 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText = (TextView) findViewById(R.id.comfort_text);
         carWashText = (TextView) findViewById(R.id.car_wash_text);
         sportText = (TextView) findViewById(R.id.sport_text);
-        bingPicImag = (ImageView) findViewById(R.id.bing_pic_img);
+        //bingPicImag = (ImageView) findViewById(R.id.bing_pic_img);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary); // 下拉刷新进度条的颜色
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navButton = (Button) findViewById(R.id.nav_button);
-
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         String weatherString = prefs.getString("weather", null);
@@ -122,13 +121,14 @@ public class WeatherActivity extends AppCompatActivity {
                 requestWeather(mWeatherId);
             }
         });
-
+/*
         String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
             Glide.with(this).load(bingPic).into(bingPicImag);
         } else {
             loadBingPic();
         }
+        */
 
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,12 +182,13 @@ public class WeatherActivity extends AppCompatActivity {
             }
         });
 
-        loadBingPic();
+        //loadBingPic();
     }
 
     /*
     * 加载必应每日一图
     * */
+    /*
     private void loadBingPic() {
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
@@ -211,8 +212,9 @@ public class WeatherActivity extends AppCompatActivity {
                 });
             }
         });
-    }
 
+    }
+*/
     /*
     * 处理并展示 Weather 实体类中的数据
     * */
