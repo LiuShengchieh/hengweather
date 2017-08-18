@@ -19,7 +19,7 @@
         android:src="@drawable/backgroundpicture" />
 
     <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+        android:id="@+id/menu_left"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -57,13 +57,30 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/nav_menu"
+            app:headerLayout="@layout/nav_header" />
+
+<!--
         <fragment
             android:id="@+id/choose_area_fragment"
             android:name="com.hengweather.android.ChooseAreaFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start" />
+-->
+    </android.support.v4.widget.DrawerLayout>
+    <!--
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     </android.support.v4.widget.DrawerLayout>
-
+-->
 </FrameLayout>
