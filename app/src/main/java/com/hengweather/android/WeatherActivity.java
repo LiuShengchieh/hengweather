@@ -1,5 +1,7 @@
 package com.hengweather.android;
 
+import android.Manifest;
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -56,7 +58,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     private TextView titleCity;
 
-    private TextView titleUpdateTime;
+    //private TextView titleUpdateTime;
 
     private TextView degreeText;
 
@@ -91,7 +93,7 @@ public class WeatherActivity extends AppCompatActivity {
         // 初始化各控件
         weatherLayout = (ScrollView) findViewById(R.id.weather_layout);
         titleCity = (TextView) findViewById(R.id.title_city);
-        titleUpdateTime = (TextView) findViewById(R.id.title_update_time);
+        //titleUpdateTime = (TextView) findViewById(R.id.title_update_time);
         degreeText = (TextView) findViewById(R.id.degree_text);
         weatherInfoText = (TextView) findViewById(R.id.weather_info_text);
         forecastLayout = (LinearLayout) findViewById(R.id.forecast_layout);
@@ -114,7 +116,25 @@ public class WeatherActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 menuLeft.closeDrawers();
+                Toast.makeText(WeatherActivity.this, "此功能尚未开发:-(", Toast.LENGTH_SHORT).show();
                 return true;
+                /*switch (item.getItemId()) {
+                    case R.id.add_city:
+                        menuLeft.closeDrawers();
+                        Intent intent = new Intent(WeatherActivity.this, );
+                        startActivity(intent);
+                        break;
+                    case R.id.about:
+                        menuLeft.closeDrawers();
+                        Toast.makeText(WeatherActivity.this, "此功能尚未开发:-(", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.setting:
+                        menuLeft.closeDrawers();
+                        Toast.makeText(WeatherActivity.this, "此功能尚未开发:-(", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                }
+                return true;*/
             }
         });
 

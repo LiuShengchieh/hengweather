@@ -32,7 +32,7 @@ public class AutoUpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         updateWeather();
-        updateBingPic();
+        //updateBingPic();
         AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
         int anHour = 8 * 60 * 60 * 1000; // 这是 8 小时的毫秒数
         long triggerAtTime = SystemClock.elapsedRealtime() + anHour;
@@ -80,7 +80,7 @@ public class AutoUpdateService extends Service {
     /*
     * 更新必应每日一图
     * */
-    private void updateBingPic() {
+   /* private void updateBingPic() {
         String requestBingPic = "Http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
             @Override
@@ -97,6 +97,6 @@ public class AutoUpdateService extends Service {
                 editor.apply();
             }
         });
-    }
+    }*/
 
 }
