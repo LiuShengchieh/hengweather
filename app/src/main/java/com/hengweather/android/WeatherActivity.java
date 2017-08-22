@@ -115,14 +115,13 @@ public class WeatherActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                menuLeft.closeDrawers();
+                /*menuLeft.closeDrawers();
                 Toast.makeText(WeatherActivity.this, "此功能尚未开发:-(", Toast.LENGTH_SHORT).show();
-                return true;
-                /*switch (item.getItemId()) {
+                return true;*/
+                switch (item.getItemId()) {
                     case R.id.add_city:
                         menuLeft.closeDrawers();
-                        Intent intent = new Intent(WeatherActivity.this, );
-                        startActivity(intent);
+                        Toast.makeText(WeatherActivity.this, "一个上海就够了吧？", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.about:
                         menuLeft.closeDrawers();
@@ -134,7 +133,7 @@ public class WeatherActivity extends AppCompatActivity {
                         break;
                     default:
                 }
-                return true;*/
+                return true;
             }
         });
 
