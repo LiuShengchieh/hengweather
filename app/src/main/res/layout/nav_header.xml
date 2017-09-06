@@ -4,7 +4,7 @@
     android:layout_width="match_parent" 
     android:layout_height="180dp"
     android:padding="10dp"
-    android:background="#BFEFFF">
+    android:background="@color/colorPrimary">
     
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon_image"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="MeowWeather, 让你的猫咪不再着凉"
-        android:textColor="#FFF"
+        android:textColor="#ffffff"
         android:textSize="14sp" />
 
 </RelativeLayout>

@@ -1,3 +1,4 @@
+/*
 package com.hengweather.android;
 
 import android.Manifest;
@@ -115,9 +116,11 @@ public class WeatherActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                /*menuLeft.closeDrawers();
+                */
+/*menuLeft.closeDrawers();
                 Toast.makeText(WeatherActivity.this, "此功能尚未开发:-(", Toast.LENGTH_SHORT).show();
-                return true;*/
+                return true;*//*
+
                 switch (item.getItemId()) {
                     case R.id.add_city:
                         menuLeft.closeDrawers();
@@ -159,6 +162,7 @@ public class WeatherActivity extends AppCompatActivity {
                 requestWeather(mWeatherId);
             }
         });
+*/
 /*
         String bingPic = prefs.getString("bing_pic", null);
         if (bingPic != null) {
@@ -166,7 +170,8 @@ public class WeatherActivity extends AppCompatActivity {
         } else {
             loadBingPic();
         }
-        */
+        *//*
+
 
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,9 +181,11 @@ public class WeatherActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    */
+/*
     * 根据天气 id 请求城市天气信息
-    * */
+    * *//*
+
     public void requestWeather(final String weatherId) {
 
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" +
@@ -225,10 +232,13 @@ public class WeatherActivity extends AppCompatActivity {
         //loadBingPic();
     }
 
-    /*
+    */
+/*
     * 加载必应每日一图
-    * */
-    /*
+    * *//*
+
+    */
+/*
     private void loadBingPic() {
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
@@ -254,10 +264,13 @@ public class WeatherActivity extends AppCompatActivity {
         });
 
     }
-*/
-    /*
+*//*
+
+    */
+/*
     * 处理并展示 Weather 实体类中的数据
-    * */
+    * *//*
+
     private void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
@@ -297,3 +310,4 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
 }
+*/

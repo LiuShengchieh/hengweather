@@ -1,6 +1,7 @@
 package com.hengweather.android;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.hengweather.android.gson.Forecast;
 import com.hengweather.android.gson.Weather;
+import com.hengweather.android.service.AutoUpdateService;
 import com.hengweather.android.util.HttpUtil;
 import com.hengweather.android.util.Utility;
 
@@ -186,7 +188,16 @@ public class WeatherFragment extends Fragment {
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature + "°C";
         String weatherInfo = weather.now.more.info;
+
+        // 存储通知栏的天气数据
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("notification", Context.MODE_PRIVATE).edit();
+        editor.putString("cityName", cityName);
+        editor.putString("degree", degree);
+        editor.putString("weatherInfo", weatherInfo);
+        editor.apply();
+
         cityText.setText(cityName);
+        //mToolbar.setTitle(cityName);
         updateText.setText("Update Time: " + updateTime);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
@@ -194,10 +205,10 @@ public class WeatherFragment extends Fragment {
         for (Forecast forecast : weather.forecastList) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.forecast_item,
                     forecastLayout, false);
-            TextView dateText = (TextView) view.findViewById(R.id.date_text);
-            TextView infoText = (TextView) view.findViewById(R.id.info_text);
-            TextView maxText = (TextView) view.findViewById(R.id.max_text);
-            TextView minText = (TextView) view.findViewById(R.id.min_text);
+            TextView dateText = view.findViewById(R.id.date_text);
+            TextView infoText = view.findViewById(R.id.info_text);
+            TextView maxText = view.findViewById(R.id.max_text);
+            TextView minText = view.findViewById(R.id.min_text);
             dateText.setText(forecast.date);
             infoText.setText(forecast.more.info);
             maxText.setText(forecast.temperature.max);
@@ -217,8 +228,10 @@ public class WeatherFragment extends Fragment {
         fluText.setText(flu);
         uvText.setText(uv);
         weatherLayout.setVisibility(View.VISIBLE);
-//        Intent intent = new Intent(this, AutoUpdateService.class);
-//        startService(intent);
+
+        // 后台自动更新天气
+        Intent intent = new Intent(getActivity(), AutoUpdateService.class);
+        getActivity().startService(intent);
     }
 
 
@@ -258,7 +271,7 @@ public class WeatherFragment extends Fragment {
                             editor.apply();
                             showWeatherInfo(weather);
                             //Toast.makeText(getActivity(), "天气信息已最新:-)",
-                              //      Toast.LENGTH_SHORT).show();
+                            //      Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getActivity(), "获取天气信息失败:-(",
                                     Toast.LENGTH_SHORT).show();

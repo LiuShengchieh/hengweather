@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -99,11 +100,27 @@ public class MainActivity extends BaseActivity {
     private void initToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
+        //getSupportActionBar().setDisplayShowTitleEnabled(true);
+        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
                 toolbar, R.string.drawer_open,R.string.drawer_close);
         toggle.syncState();
-        drawerLayout.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);*/
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+        return true;
     }
 
     private void initNavigation() {
@@ -116,12 +133,17 @@ public class MainActivity extends BaseActivity {
                     case R.id.add_city:
                         Intent intent = new Intent(MainActivity.this, ChooseCity.class);
                         startActivity(intent);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.setting:
-                        Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
+                        Intent SettingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                        startActivity(SettingIntent);
+                        drawerLayout.closeDrawers();
                         break;
                     case R.id.about:
                         Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
+                        drawerLayout.closeDrawers();
                         break;
                 }
                 return false;
@@ -189,7 +211,7 @@ public class MainActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                Toast.makeText(this, "再按一次便可退出", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
