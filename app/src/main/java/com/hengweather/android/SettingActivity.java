@@ -35,6 +35,7 @@ public class SettingActivity extends BaseActivity {
         setContentView(R.layout.activity_setting);
 
         sToolbar = (Toolbar) findViewById(R.id.toolbar);
+        sToolbar.setTitle("设置");
         setSupportActionBar(sToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
