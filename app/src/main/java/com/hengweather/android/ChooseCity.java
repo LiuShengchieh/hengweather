@@ -87,6 +87,7 @@ public class ChooseCity extends BaseActivity {
 
     private void initToolbar() {
         toolbarTitle = (Toolbar) findViewById(R.id.toolbar);
+        toolbarTitle.setTitle("切换城市");
         setSupportActionBar(toolbarTitle);
         if (getSupportActionBar()!= null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

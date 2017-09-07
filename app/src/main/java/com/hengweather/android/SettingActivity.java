@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -26,8 +27,6 @@ public class SettingActivity extends BaseActivity {
     public ToggleButton toggleButton;
 
     public Toolbar sToolbar;
-
-    public DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +39,18 @@ public class SettingActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-       // drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         SharedPreferences prefs = getSharedPreferences("notification", MODE_PRIVATE);
         final String cityName = prefs.getString("cityName", "");
         final String degree = prefs.getString("degree", "");
         final String weatherInfo = prefs.getString("weatherInfo", "");
         toggleButton = (ToggleButton) findViewById(R.id.sw);
+
+        // 进入设置页即自动关闭通知栏天气
+        toggleButton.setChecked(false);
+        NotificationManager manager = (NotificationManager) getSystemService(
+                NOTIFICATION_SERVICE);
+        manager.cancel(1);
+
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -64,6 +68,7 @@ public class SettingActivity extends BaseActivity {
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                                     R.mipmap.logo))
                             .setContentIntent(pi)
+                            .setAutoCancel(true)
                             .build();
                     manager.notify(1, notification);
                 } else {
