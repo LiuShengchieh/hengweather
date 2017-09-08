@@ -62,13 +62,14 @@ public class SettingActivity extends BaseActivity {
                             NOTIFICATION_SERVICE);
                     Notification notification = new NotificationCompat.Builder(getApplicationContext())
                             .setContentTitle(cityName)
-                            .setContentText(degree + "  " + weatherInfo + "    " + "喵，亲我一口可好？")
+                            .setContentText(degree + "  " + weatherInfo + "    " + "啊！明日最后一天实习啦！")
                             .setWhen(System.currentTimeMillis())
                             .setSmallIcon(R.mipmap.logo)
                             .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                                     R.mipmap.logo))
                             .setContentIntent(pi)
                             .setAutoCancel(true)
+                            .setOngoing(true)
                             .build();
                     manager.notify(1, notification);
                 } else {
