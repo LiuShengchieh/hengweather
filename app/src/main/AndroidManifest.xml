@@ -40,7 +40,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseCity" />
+        <activity android:name=".ChooseCity">
+            <intent-filter>
+                <action android:name="com.hengweather.android.CHOOSE_CITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".service.AutoUpdateService"

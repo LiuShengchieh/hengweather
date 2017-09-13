@@ -3,6 +3,7 @@ package com.hengweather.android;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Process;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -186,7 +188,8 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.add_city:
-                        Intent intent = new Intent(MainActivity.this, ChooseCity.class);
+                        //Intent intent = new Intent(MainActivity.this, ChooseCity.class);
+                        Intent intent = new Intent("com.hengweather.android.CHOOSE_CITY");
                         startActivity(intent);
                         drawerLayout.closeDrawers();
                         break;
@@ -197,7 +200,10 @@ public class MainActivity extends BaseActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.about:
-                        Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
+                        Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
+                        aboutIntent.setData(Uri.parse("https://liushengchieh.github.io"));
+                        startActivity(aboutIntent);
                         drawerLayout.closeDrawers();
                         break;
                 }
@@ -270,8 +276,10 @@ public class MainActivity extends BaseActivity {
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
-                System.exit(0);
-                Process.killProcess(Process.myPid());
+                // 淡出动画
+                overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                //System.exit(0);
+                //Process.killProcess(Process.myPid());
             }
         }
     }
