@@ -34,18 +34,22 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".ChooseCity">
             <intent-filter>
                 <action android:name="com.hengweather.android.CHOOSE_CITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".aboutActivity" />
 
         <service
             android:name=".service.AutoUpdateService"
@@ -54,13 +58,20 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Rx9U5au81F0ni0uQtjL2LnkD2QpgbB0Y" />
         //key:开发者申请的Key
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".OpenSourceComponentActivity" />
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

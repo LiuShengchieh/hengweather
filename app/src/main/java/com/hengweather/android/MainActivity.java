@@ -191,18 +191,22 @@ public class MainActivity extends BaseActivity {
                         //Intent intent = new Intent(MainActivity.this, ChooseCity.class);
                         Intent intent = new Intent("com.hengweather.android.CHOOSE_CITY");
                         startActivity(intent);
+                        //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.setting:
                         //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
                         Intent SettingIntent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(SettingIntent);
+                        //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.about:
                         //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
-                        Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
-                        aboutIntent.setData(Uri.parse("https://liushengchieh.github.io"));
+                        //Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
+                        //aboutIntent.setData(Uri.parse("https://liushengchieh.github.io"));
+                        //startActivity(aboutIntent);
+                        Intent aboutIntent = new Intent(MainActivity.this, aboutActivity.class);
                         startActivity(aboutIntent);
                         drawerLayout.closeDrawers();
                         break;
