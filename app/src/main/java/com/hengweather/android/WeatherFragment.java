@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,6 +69,11 @@ public class WeatherFragment extends Fragment {
 
     public static final String TAG = "WeatherFragment";
 
+    public CardView nowCardView;
+    public CardView forecastCardView;
+    public CardView aqiCardView;
+    public CardView suggestionCardView;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -103,6 +109,60 @@ public class WeatherFragment extends Fragment {
         uvText = view.findViewById(R.id.uv_text);
         swipeRefresh = view.findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary); // 下拉刷新进度条的颜色
+
+        nowCardView = view.findViewById(R.id.cardView_now);
+        forecastCardView = view.findViewById(R.id.cardView_forecast);
+        aqiCardView = view.findViewById(R.id.cardView_aqi);
+        suggestionCardView = view.findViewById(R.id.cardView_suggestion);
+
+        nowCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(), "Nice Today!", Toast.LENGTH_SHORT).show();
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "没有人在寒冷时拥抱你，没有人在燥热时凉快你。" +
+                        "只有我一直陪伴你，嘘寒又问暖。看云卷云舒，感风起风落。欢迎下载「喵呜天气」：" +
+                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                startActivity(Intent.createChooser(textIntent, "分享"));
+            }
+        });
+
+        forecastCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "天气预报知多少，喵呜天气少不了。既不想被雨淋，" +
+                        "又不想被日晒？那就快来下载「喵唔天气」吧：" +
+                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                startActivity(Intent.createChooser(textIntent, "分享"));
+            }
+        });
+
+        aqiCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "天灰蒙蒙的，是雾还是霾？不要怕，「喵呜天气」告诉你：" +
+                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                startActivity(Intent.createChooser(textIntent, "分享"));
+            }
+        });
+
+        suggestionCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "今晚要跑步吗？出门穿什么衣服呀？会不会感冒呢？" +
+                        "不想被晒伤啊。快来下载「喵呜天气」，你可爱又贴心的生活小助手：" +
+                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                startActivity(Intent.createChooser(textIntent, "分享"));
+            }
+        });
+
 
         weatherId = (String) getArguments().get("weather_id");
         weatherLayout.setVisibility(View.INVISIBLE);

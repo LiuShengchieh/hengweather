@@ -8,7 +8,10 @@
     card_view:cardBackgroundColor="#ffffff"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="3dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:id="@+id/cardView_suggestion">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

@@ -28,6 +28,7 @@ public class aboutActivity extends AppCompatActivity {
         TextView adviceText = (TextView) findViewById(R.id.advice);
         TextView openText = (TextView) findViewById(R.id.open_source_component);
         TextView contactText = (TextView) findViewById(R.id.contact);
+        TextView codeText = (TextView) findViewById(R.id.source_code);
 
         adviceText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,15 @@ public class aboutActivity extends AppCompatActivity {
                 Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
                 aboutIntent.setData(Uri.parse("https://liushengchieh.github.io/about/"));
                 startActivity(aboutIntent);
+            }
+        });
+
+        codeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent codeIntent = new Intent(Intent.ACTION_VIEW);
+                codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
+                startActivity(codeIntent);
             }
         });
     }
