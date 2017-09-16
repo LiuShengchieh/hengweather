@@ -123,7 +123,7 @@ public class WeatherFragment extends Fragment {
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "没有人在寒冷时拥抱你，没有人在燥热时凉快你。" +
                         "只有我一直陪伴你，嘘寒又问暖。看云卷云舒，感风起风落。欢迎下载「喵呜天气」：" +
-                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
@@ -135,7 +135,7 @@ public class WeatherFragment extends Fragment {
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "天气预报知多少，喵呜天气少不了。既不想被雨淋，" +
                         "又不想被日晒？那就快来下载「喵唔天气」吧：" +
-                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
@@ -146,7 +146,7 @@ public class WeatherFragment extends Fragment {
                 Intent textIntent = new Intent(Intent.ACTION_SEND);
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "天灰蒙蒙的，是雾还是霾？不要怕，「喵呜天气」告诉你：" +
-                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
@@ -158,7 +158,7 @@ public class WeatherFragment extends Fragment {
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "今晚要跑步吗？出门穿什么衣服呀？会不会感冒呢？" +
                         "不想被晒伤啊。快来下载「喵呜天气」，你可爱又贴心的生活小助手：" +
-                        "https://github.com/LiuShengchieh/hengweather ———— MeowWeather");
+                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
