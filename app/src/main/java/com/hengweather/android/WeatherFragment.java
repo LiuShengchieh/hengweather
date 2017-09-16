@@ -134,7 +134,7 @@ public class WeatherFragment extends Fragment {
                 Intent textIntent = new Intent(Intent.ACTION_SEND);
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "天气预报知多少，喵呜天气少不了。既不想被雨淋，" +
-                        "又不想被日晒？那就快来下载「喵唔天气」吧：" +
+                        "又不想被日晒？那就快来下载「喵呜天气」吧：" +
                         "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
@@ -157,7 +157,7 @@ public class WeatherFragment extends Fragment {
                 Intent textIntent = new Intent(Intent.ACTION_SEND);
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "今晚要跑步吗？出门穿什么衣服呀？会不会感冒呢？" +
-                        "不想被晒伤啊。快来下载「喵呜天气」，你可爱又贴心的生活小助手：" +
+                        "不想被晒伤啊……快来下载「喵呜天气」，你可爱又贴心的生活小助手：" +
                         "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
