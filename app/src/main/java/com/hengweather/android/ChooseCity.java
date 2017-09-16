@@ -1,3 +1,4 @@
+/*
 package com.hengweather.android;
 
 import android.app.ProgressDialog;
@@ -25,9 +26,11 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+*/
 /**
  * Created by liushengjie on 2017/8/29.
- */
+ *//*
+
 
 public class ChooseCity extends BaseActivity {
 
@@ -47,34 +50,46 @@ public class ChooseCity extends BaseActivity {
 
     public static final int LEVEL_COUNTY = 2;
 
-    /*
+    */
+/*
     * 省列表
-    * */
+    * *//*
+
     private List<Province> provinceList;
 
-    /*
+    */
+/*
     * 市列表
-    * */
+    * *//*
+
     private List<City> cityList;
 
-    /*
+    */
+/*
     * 县列表
-    * */
+    * *//*
+
     private List<County> countyList;
 
-    /*
+    */
+/*
     * 选中的省份
-    * */
+    * *//*
+
     private Province selectedProvince;
 
-    /*
+    */
+/*
     * 选中的城市
-    * */
+    * *//*
+
     private City selectedCity;
 
-    /*
+    */
+/*
     * 当前选中的级别
-    * */
+    * *//*
+
     private int currentLevel;
 
     @Override
@@ -135,9 +150,11 @@ public class ChooseCity extends BaseActivity {
         });
     }
 
-    /*
+    */
+/*
     * 查询全国所有的省，优先从数据库查询，如果没有查询到再去服务器上查询
-    * */
+    * *//*
+
     private void queryProvinces() {
         //titleText.setText("中国");
         //backButton.setVisibility(View.GONE);
@@ -156,9 +173,11 @@ public class ChooseCity extends BaseActivity {
         }
     }
 
-    /*
+    */
+/*
     * 查询全国所有的市，优先从数据库查询，如果没有查询到再去服务器上查询
-    * */
+    * *//*
+
     private void queryCities() {
         //titleText.setText(selectedProvince.getProvinceName());
         //backButton.setVisibility(View.VISIBLE);
@@ -180,9 +199,11 @@ public class ChooseCity extends BaseActivity {
         }
     }
 
-    /*
+    */
+/*
     * 查询全国所有的县，优先从数据库查询，如果没有查询到再去服务器上查询
-    * */
+    * *//*
+
     private void queryCounties() {
         //titleText.setText(selectedCity.getCityName());
         //backButton.setVisibility(View.VISIBLE);
@@ -205,9 +226,11 @@ public class ChooseCity extends BaseActivity {
         }
     }
 
-    /*
+    */
+/*
     * 根据传入的地址和类型从服务器上查询省市县数据
-    * */
+    * *//*
+
     private void queryFromServer(String address, final String type) {
         showProgressDialog();
         HttpUtil.sendOkHttpRequest(address, new Callback() {
@@ -256,9 +279,11 @@ public class ChooseCity extends BaseActivity {
         });
     }
 
-    /*
+    */
+/*
     * 显示进度对话框
-    * */
+    * *//*
+
     private void showProgressDialog() {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(ChooseCity.this);
@@ -268,9 +293,11 @@ public class ChooseCity extends BaseActivity {
         progressDialog.show();
     }
 
-    /*
+    */
+/*
     * 关闭进度对话框
-    * */
+    * *//*
+
     private void closeProgressDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
@@ -288,3 +315,4 @@ public class ChooseCity extends BaseActivity {
         }
     }
 }
+*/

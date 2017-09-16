@@ -1,26 +1,18 @@
 package com.hengweather.android;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -28,11 +20,11 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.hengweather.android.model.Common;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.zaaach.citypicker.CityPickerActivity;
 
 public class MainActivity extends BaseActivity {
+
+    private static final int REQUEST_CODE_PICK_CITY = 0;
 
     public DrawerLayout drawerLayout;
 
@@ -189,9 +181,14 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.add_city:
                         //Intent intent = new Intent(MainActivity.this, ChooseCity.class);
-                        Intent intent = new Intent("com.hengweather.android.CHOOSE_CITY");
-                        startActivity(intent);
+                        //Intent intent = new Intent("com.hengweather.android.CHOOSE_CITY");
+                        //startActivity(intent);
                         //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+                        //启动
+                        startActivityForResult(new Intent(MainActivity.this, CityPickerActivity.class),
+                                REQUEST_CODE_PICK_CITY);
+
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.setting:
@@ -214,6 +211,17 @@ public class MainActivity extends BaseActivity {
                 return false;
             }
         });
+    }
+
+    //重写onActivityResult方法
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
+            if (data != null){
+                String cityName = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
+                queryWeatherCode(cityName);
+            }
+        }
     }
 
     private void initLocation(){
@@ -243,9 +251,9 @@ public class MainActivity extends BaseActivity {
                     queryWeatherCode(cityName);
                     Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "定位失败只能看北京的天气啦:-)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-)", Toast.LENGTH_SHORT).show();
                     //定位失败加载默认城市
-                    String cityName = "北京";
+                    String cityName = "上海";
                     queryWeatherCode(cityName);
                 }
                 mLocationClient.stop();
@@ -265,7 +273,7 @@ public class MainActivity extends BaseActivity {
             weatherFragment.setArguments(bundle);
             fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.myCoor, weatherFragment).commit();
+            transaction.add(R.id.myCoor, weatherFragment).commitAllowingStateLoss();
         }
     }
 

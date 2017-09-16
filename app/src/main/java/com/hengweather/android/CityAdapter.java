@@ -1,3 +1,4 @@
+/*
 package com.hengweather.android;
 
 import android.content.Context;
@@ -10,9 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
+*
  * Created by liushengjie on 2017/8/29.
- */
+
+
 
 public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
     private Context mContext;
@@ -37,14 +39,15 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_item, parent, false);
+View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.city_item, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.cityView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
-        });*/
+        });
+
 
         if (mContext==null){
             mContext=parent.getContext();
@@ -86,3 +89,4 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         return mDataList.size();
     }
 }
+*/
