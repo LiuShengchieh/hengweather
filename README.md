@@ -10,7 +10,7 @@
 
 hengweather 第一版正式发布！
 
-App Name: MeowWeather
+App Name: MeowWeather  
 Release Version: 1.0
 
 Download Link: [MeowWeather20170916](https://pan.baidu.com/s/1bEF1Wa)
