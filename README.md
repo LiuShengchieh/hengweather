@@ -6,4 +6,13 @@
 
 2017.09.08 Shengjie
 
+——————————————————————————
 
+hengweather 第一版正式发布！
+
+App Name: MeowWeather
+Release Version: 1.0
+
+Download Link: [MeowWeather20170916](https://pan.baidu.com/s/1bEF1Wa)
+
+2017.09.16 Shengjie
