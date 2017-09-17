@@ -207,6 +207,11 @@ public class MainActivity extends BaseActivity {
                         startActivity(aboutIntent);
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.exit:
+                        finish();
+                        //ActivityCollector.finishAll();
+                        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
+                        break;
                 }
                 return false;
             }

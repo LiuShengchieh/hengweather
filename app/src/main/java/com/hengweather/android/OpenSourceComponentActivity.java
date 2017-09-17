@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class OpenSourceComponentActivity extends AppCompatActivity {
+public class OpenSourceComponentActivity extends BaseActivity {
 
     public Toolbar oToolbar;
 

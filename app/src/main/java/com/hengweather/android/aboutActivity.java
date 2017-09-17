@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class aboutActivity extends AppCompatActivity {
+public class aboutActivity extends BaseActivity {
 
     public Toolbar aToolbar;
 
