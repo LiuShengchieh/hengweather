@@ -1,11 +1,15 @@
 package com.hengweather.android;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -22,6 +26,9 @@ import com.baidu.location.LocationClientOption;
 import com.hengweather.android.model.Common;
 import com.zaaach.citypicker.CityPickerActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_PICK_CITY = 0;
@@ -36,6 +43,8 @@ public class MainActivity extends BaseActivity {
 
     public LocationClient mLocationClient;
 
+    public BDLocationListener myListener = new MyLocationListener();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +52,10 @@ public class MainActivity extends BaseActivity {
 
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
-        mLocationClient.registerLocationListener(new MyLocationListener());
+        mLocationClient.registerLocationListener(myListener);
         //注册监听函数
 
-        /*// 请求位置权限、电话权限、存储权限
+        // 请求位置权限、电话权限、存储权限
         List<String> permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.
                 permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -65,14 +74,15 @@ public class MainActivity extends BaseActivity {
             ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
         } else {
             requestLocation();
-        }*/
+        }
 
         initNavigation(); // 初始化侧滑菜单
         initToolBar(); // 初始化 ToolBar
-        initLocation(); // 初始化百度地图定位
-        mLocationClient.start(); // 开始定位
+        //initLocation(); // 初始化百度地图定位
+        //mLocationClient.start(); // 开始定位
     }
-/*    private void requestLocation() {
+    private void requestLocation() {
+        initLocation(); // 初始化百度地图定位
         mLocationClient.start();
     }
 
@@ -84,7 +94,7 @@ public class MainActivity extends BaseActivity {
                 if (grantResults.length > 0) {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
-                            Toast.makeText(this, "必须同意所有权限才能使用本程序",
+                            Toast.makeText(this, "必须同意所有权限才能让喵呜给您嘘寒问暖喔～",
                                     Toast.LENGTH_SHORT).show();
                             finish();
                             return;
@@ -92,13 +102,13 @@ public class MainActivity extends BaseActivity {
                     }
                     requestLocation();
                 } else {
-                    Toast.makeText(this, "发生未知错误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "咦，出现未知错误啦", Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 break;
             default:
         }
-    }*/
+    }
 
     @Override
     protected void onStart() {
@@ -155,11 +165,6 @@ public class MainActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
-        //getSupportActionBar().setDisplayShowTitleEnabled(true);
-        /*ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,
-                toolbar, R.string.drawer_open,R.string.drawer_close);
-        toggle.syncState();
-        drawerLayout.addDrawerListener(toggle);*/
     }
 
     @Override
@@ -180,37 +185,20 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.add_city:
-                        //Intent intent = new Intent(MainActivity.this, ChooseCity.class);
-                        //Intent intent = new Intent("com.hengweather.android.CHOOSE_CITY");
-                        //startActivity(intent);
-                        //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
                         //启动
                         startActivityForResult(new Intent(MainActivity.this, CityPickerActivity.class),
                                 REQUEST_CODE_PICK_CITY);
-
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.setting:
-                        //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
                         Intent SettingIntent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(SettingIntent);
-                        //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.about:
-                        //Toast.makeText(MainActivity.this, "尚未开发:-)", Toast.LENGTH_SHORT).show();
-                        //Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
-                        //aboutIntent.setData(Uri.parse("https://liushengchieh.github.io"));
-                        //startActivity(aboutIntent);
                         Intent aboutIntent = new Intent(MainActivity.this, aboutActivity.class);
                         startActivity(aboutIntent);
                         drawerLayout.closeDrawers();
-                        break;
-                    case R.id.exit:
-                        finish();
-                        //ActivityCollector.finishAll();
-                        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
                         break;
                 }
                 return false;
@@ -259,7 +247,7 @@ public class MainActivity extends BaseActivity {
                             queryWeatherCode(cityName);
                             Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-)", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-(", Toast.LENGTH_SHORT).show();
                             //定位失败加载默认城市
                             String cityName = "上海";
                             queryWeatherCode(cityName);
@@ -300,8 +288,6 @@ public class MainActivity extends BaseActivity {
                 finish();
                 // 淡出动画
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
-                //System.exit(0);
-                //Process.killProcess(Process.myPid());
             }
         }
     }

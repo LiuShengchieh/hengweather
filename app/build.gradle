@@ -5,8 +5,8 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.hengweather.android"
-        minSdkVersion 23
-        targetSdkVersion 26
+        minSdkVersion 14
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,6 +36,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.0.+'
     testCompile 'junit:junit:4.12'
     compile 'com.zaaach:citypicker:1.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 
