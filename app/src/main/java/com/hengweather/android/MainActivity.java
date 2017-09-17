@@ -294,7 +294,7 @@ public class MainActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "再按一次退出MeowWeather", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();
