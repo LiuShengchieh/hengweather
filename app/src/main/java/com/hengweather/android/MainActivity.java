@@ -46,7 +46,8 @@ public class MainActivity extends BaseActivity {
         mLocationClient.registerLocationListener(new MyLocationListener());
         //注册监听函数
 
-/*        List<String> permissionList = new ArrayList<>();
+        /*// 请求位置权限、电话权限、存储权限
+        List<String> permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.
                 permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
@@ -71,14 +72,13 @@ public class MainActivity extends BaseActivity {
         initLocation(); // 初始化百度地图定位
         mLocationClient.start(); // 开始定位
     }
-/*
-    private void requestLocation() {
+/*    private void requestLocation() {
         mLocationClient.start();
-    }*/
+    }
 
-/*    @Override
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0) {
@@ -242,22 +242,27 @@ public class MainActivity extends BaseActivity {
     public class MyLocationListener implements BDLocationListener {
 
         @Override
-        public void onReceiveLocation(BDLocation location) {
-            if (location != null) {
-                String city = location.getCity();
-                if (!TextUtils.isEmpty(city)) {
-                    String cityName = city.replace("市", "");
-                    Log.i("定位成功", "当前城市为" + cityName);
-                    queryWeatherCode(cityName);
-                    Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-)", Toast.LENGTH_SHORT).show();
-                    //定位失败加载默认城市
-                    String cityName = "上海";
-                    queryWeatherCode(cityName);
+        public void onReceiveLocation(final BDLocation location) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (location != null) {
+                        String city = location.getCity();
+                        if (!TextUtils.isEmpty(city)) {
+                            String cityName = city.replace("市", "");
+                            Log.i("定位成功", "当前城市为" + cityName);
+                            queryWeatherCode(cityName);
+                            Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-)", Toast.LENGTH_SHORT).show();
+                            //定位失败加载默认城市
+                            String cityName = "上海";
+                            queryWeatherCode(cityName);
+                        }
+                        mLocationClient.stop();
+                    }
                 }
-                mLocationClient.stop();
-            }
+            });
         }
     }
 

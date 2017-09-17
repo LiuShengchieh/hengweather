@@ -41,7 +41,11 @@ limitations under the License.\n
         that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.\n\n
 
         License:\n
-        BSD, part MIT and Apache 2.0.\n\n
+        BSD, part MIT and Apache 2.0.\n
+    </string>
+    <string name="citypicker">CityPicker</string>
+    <string name="citypicker_license">
+        https://github.com/zaaach/CityPicker\n\n
     </string>
 
 

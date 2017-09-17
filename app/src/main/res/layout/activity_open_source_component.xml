@@ -81,6 +81,24 @@
                 android:textColor="#848484"
                 android:padding="10dp"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/citypicker"
+                android:textSize="20sp"
+                android:textColor="#848484"
+                android:padding="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/citypicker_license"
+                android:textSize="13sp"
+                android:textColor="#848484"
+                android:padding="10dp"/>
+
         </LinearLayout>
 
     </ScrollView>
