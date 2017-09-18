@@ -13,7 +13,7 @@ hengweather 第一版正式发布！
 App Name: MeowWeather  
 Release Version: 1.0
 
-Download Link: [MeowWeather20170916](https://pan.baidu.com/s/1bEF1Wa)
+Download Link: [MeowWeather](https://pan.baidu.com/s/1bEF1Wa)
 
 2017.09.16 Shengjie
 
@@ -45,3 +45,10 @@ Download Link: [MeowWeather20170916](https://pan.baidu.com/s/1bEF1Wa)
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/a.png)
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/b.png)
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/c.png)
+
+## 感谢：
+MeowWeather 在开发过程中使用了以下第三方开源类库、组件，在此列出表示感谢。
+1. Litepal for Android https://github.com/LitePalFramework/LitePal
+2. OkHttp https://github.com/square/okhttp
+3. Glide https://github.com/bumptech/glide
+4. CityPicker https://github.com/zaaach/CityPicker
