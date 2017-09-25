@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
         initToolBar(); // 初始化 ToolBar
 
     }
+
     private void requestLocation() {
         initLocation(); // 初始化百度地图定位
         mLocationClient.start();
