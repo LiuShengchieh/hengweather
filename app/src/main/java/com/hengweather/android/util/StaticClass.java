@@ -13,5 +13,4 @@ public class StaticClass {
     //heWeather key
     public static final String HE_WEATHER_KEY = "d851400db09a4107b4259a8bcd54dfa2";
 
-
 }
