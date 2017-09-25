@@ -1,4 +1,4 @@
-package com.hengweather.android;
+package com.hengweather.android.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,16 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.hengweather.android.BaseActivity;
+import com.hengweather.android.MainActivity;
+import com.hengweather.android.R;
+
 public class WelcomeActivity extends BaseActivity {
 
     private ImageView welcomeImg = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_page);
         welcomeImg = (ImageView) this.findViewById(R.id.welcome_img);

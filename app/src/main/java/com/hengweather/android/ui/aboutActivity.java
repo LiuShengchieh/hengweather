@@ -1,4 +1,4 @@
-package com.hengweather.android;
+package com.hengweather.android.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,13 +9,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.hengweather.android.BaseActivity;
+import com.hengweather.android.R;
+
 public class aboutActivity extends BaseActivity {
 
     public Toolbar aToolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_about);
 
         aToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,6 +70,7 @@ public class aboutActivity extends BaseActivity {
                 startActivity(codeIntent);
             }
         });
+
     }
 
     @Override

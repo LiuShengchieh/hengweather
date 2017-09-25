@@ -1,4 +1,4 @@
-package com.hengweather.android;
+package com.hengweather.android.ui;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -14,6 +14,10 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
+import com.hengweather.android.BaseActivity;
+import com.hengweather.android.MainActivity;
+import com.hengweather.android.R;
+
 public class SettingActivity extends BaseActivity {
 
     public ToggleButton toggleButton;
@@ -21,7 +25,7 @@ public class SettingActivity extends BaseActivity {
     public Toolbar sToolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 

@@ -23,6 +23,7 @@ import com.hengweather.android.gson.Forecast;
 import com.hengweather.android.gson.Weather;
 import com.hengweather.android.service.AutoUpdateService;
 import com.hengweather.android.util.HttpUtil;
+import com.hengweather.android.util.StaticClass;
 import com.hengweather.android.util.Utility;
 
 import java.io.IOException;
@@ -299,12 +300,9 @@ public class WeatherFragment extends Fragment {
     * 根据天气 id 请求城市天气信息
     * */
     public void requestWeather(final String weatherId) {
-/*
-        String weatherUrl = "http://guolin.tech/api/weather?cityid=" +
-                weatherId + "&key=d851400db09a4107b4259a8bcd54dfa2";*/
 
         String weatherUrl = "https://free-api.heweather.com/v5/weather?city=" +
-                weatherId + "&key=d851400db09a4107b4259a8bcd54dfa2";
+                weatherId + "&key=" + StaticClass.HE_WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

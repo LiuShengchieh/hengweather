@@ -1,16 +1,19 @@
-package com.hengweather.android;
+package com.hengweather.android.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.hengweather.android.BaseActivity;
+import com.hengweather.android.R;
+
 public class OpenSourceComponentActivity extends BaseActivity {
 
     public Toolbar oToolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_source_component);
 

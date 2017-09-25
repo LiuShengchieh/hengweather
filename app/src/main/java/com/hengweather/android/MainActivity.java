@@ -24,6 +24,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.hengweather.android.model.Common;
+import com.hengweather.android.ui.SettingActivity;
+import com.hengweather.android.ui.aboutActivity;
 import com.zaaach.citypicker.CityPickerActivity;
 
 import java.util.ArrayList;
@@ -78,8 +80,7 @@ public class MainActivity extends BaseActivity {
 
         initNavigation(); // 初始化侧滑菜单
         initToolBar(); // 初始化 ToolBar
-        //initLocation(); // 初始化百度地图定位
-        //mLocationClient.start(); // 开始定位
+
     }
     private void requestLocation() {
         initLocation(); // 初始化百度地图定位
@@ -108,36 +109,6 @@ public class MainActivity extends BaseActivity {
                 break;
             default:
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
     @Override

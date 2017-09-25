@@ -37,9 +37,8 @@
             android:launchMode="singleTask">
         </activity>
 
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".aboutActivity" />
+        <activity android:name=".ui.SettingActivity" />
+        <activity android:name=".ui.aboutActivity" />
 
         <service
             android:name=".service.AutoUpdateService"
@@ -67,9 +66,9 @@
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
 
-        <activity android:name=".OpenSourceComponentActivity" />
+        <activity android:name=".ui.OpenSourceComponentActivity" />
 
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
