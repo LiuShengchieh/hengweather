@@ -9,7 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--开源组件-->
-    <string name="intro_meowweather">MeowWeather 在开发过程中使用了下列第三方源类库、组件，在此列出表示感谢与敬意。</string>
+    <string name="intro_meowweather">MeowWeather 在开发过程中使用了下列第三方开源组件，并得到女票的支持，在此列出表示感谢与敬意。</string>
     <string name="litepal">Litepal for Android</string>
     <string name="litepal_license">
 Copyright (C)  Tony Green, LitePal Framework Open Source Project\n
@@ -20,6 +20,10 @@ You may obtain a copy of the License at\n\n
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
 See the License for the specific language governing permissions andlimitations under the License.\n
     </string>
+    <string name="xty">XTY</string>
+    <string name="xty_intro">
+        可爱又善良，温柔且甜美。超级超级超级超级超级超级漂亮的小姑娘 ———— 就是我老婆啦！\n
+    </string>>
     <string name="okhttp">OkHttp</string>
     <string name="okhttp_license">
         An HTTP &amp; HTTP/2 client for Android and Java applications.\n\n
