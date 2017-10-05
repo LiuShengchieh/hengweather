@@ -9,4 +9,5 @@
     <color name="navigationBarColor">#000000</color>
     <color name="textColor">#999999</color>
     <color name="titleColor">#BABABA</color>
+    <color name="background_gray">#D1D1D1</color>
 </resources>

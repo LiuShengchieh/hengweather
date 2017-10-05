@@ -3,20 +3,28 @@ package com.hengweather.android;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -26,16 +34,24 @@ import com.baidu.location.LocationClientOption;
 import com.hengweather.android.model.Common;
 import com.hengweather.android.ui.SettingActivity;
 import com.hengweather.android.ui.aboutActivity;
+import com.hengweather.android.util.Utility;
+import com.hengweather.android.view.CustomDialog;
 import com.zaaach.citypicker.CityPickerActivity;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_PICK_CITY = 0;
 
     public DrawerLayout drawerLayout;
+
+    public NavigationView navigationView;
 
     private String weatherId;
 
@@ -46,6 +62,12 @@ public class MainActivity extends BaseActivity {
     public LocationClient mLocationClient;
 
     public BDLocationListener myListener = new MyLocationListener();
+
+    private CircleImageView icon_image;
+    private CustomDialog dialog;
+    private Button btn_camera;
+    private Button btn_picture;
+    private Button btn_cancel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -150,8 +172,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initNavigation() {
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //引入header和menu
+        navigationView.inflateHeaderView(R.layout.nav_header);
+        navigationView.inflateMenu(R.menu.nav_menu);
+        //设置menu的点击事件
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -177,6 +204,50 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        //获取头部布局
+        View navHeaderView = navigationView.getHeaderView(0);
+        //设置圆形头像的点击事件
+        icon_image = navHeaderView.findViewById(R.id.icon_image);
+        icon_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
+
+        //读取头像
+        Utility.getImageFromShare(this, icon_image);
+
+        //dialog
+        dialog = new CustomDialog(this, 100, 100, R.layout.dialog_photo, R.style.Theme_dialog,
+                Gravity.BOTTOM, R.style.pop_anim_style);
+        //屏幕外点击无效
+        dialog.setCancelable(false);
+
+        btn_camera = dialog.findViewById(R.id.btn_camera);
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toCamera();
+            }
+        });
+
+        btn_picture = dialog.findViewById(R.id.btn_picture);
+        btn_picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toPicture();
+            }
+        });
+
+        btn_cancel = dialog.findViewById(R.id.btn_cancel);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
     }
 
     //重写onActivityResult方法
@@ -188,6 +259,114 @@ public class MainActivity extends BaseActivity {
                 queryWeatherCode(cityName);
             }
         }
+
+        //圆形头像
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                //相机数据
+                case CAMERA_REQUEST_CODE:
+                    startPhotoZoom(imageUri);
+                    break;
+                //相册数据
+                case IMAGE_REQUEST_CODE:
+                    startPhotoZoom(data.getData());
+                    break;
+                case RESULT_REQUEST_CODE:
+                    //有可能点击舍弃
+                    if (data != null) {
+                        //拿到图片设置
+                        setImageToView(data);
+                        //删除原来的图片
+                        if (tempFile != null) {
+                            tempFile.delete();
+                        }
+                    }
+                    break;
+            }
+        }
+
+    }
+
+    public static final String PHOTO_IMAGE_FILE_NAME = "fileImg.jpg";
+    public static final int CAMERA_REQUEST_CODE = 100;
+    public static final int IMAGE_REQUEST_CODE = 101;
+    public static final int RESULT_REQUEST_CODE = 102;
+    private File tempFile = null;
+    private Uri imageUri;
+
+    //跳转相机
+    private void toCamera() {
+
+        File outputImage = new File(this.getExternalCacheDir(),
+                PHOTO_IMAGE_FILE_NAME);
+        try {
+            if (outputImage.exists()) {
+                outputImage.delete();
+            }
+            outputImage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (Build.VERSION.SDK_INT >= 24) {
+            imageUri = FileProvider.getUriForFile(this,
+                    "com.hengweather.android.fileprovider", outputImage);
+        } else {
+            imageUri = Uri.fromFile(outputImage);
+        }
+        //启动相机程序
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, CAMERA_REQUEST_CODE);
+        dialog.dismiss();
+
+    }
+
+    //跳转相册
+    private void toPicture() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_REQUEST_CODE);
+        dialog.dismiss();
+    }
+
+    //裁剪
+    private void startPhotoZoom(Uri uri) {
+        if (uri == null) {
+            return;
+        }
+
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        //裁剪
+        intent.putExtra("crop", true);
+        //宽高比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        //图片质量
+        intent.putExtra("outputX", 320);
+        intent.putExtra("outputY", 320);
+        //发送数据
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, RESULT_REQUEST_CODE);
+    }
+
+    //设置图片
+    private void setImageToView(Intent data) {
+        Bundle bundle = data.getExtras();
+        if (bundle != null) {
+            Bitmap bitmap = bundle.getParcelable("data");
+            icon_image.setImageBitmap(bitmap);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //保存头像
+        Utility.putImageToShare(this, icon_image);
     }
 
     private void initLocation(){

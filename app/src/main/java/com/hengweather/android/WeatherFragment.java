@@ -129,6 +129,7 @@ public class WeatherFragment extends Fragment {
             }
         });
 
+/*
         forecastCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +164,7 @@ public class WeatherFragment extends Fragment {
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
+*/
 
 
         weatherId = (String) getArguments().get("weather_id");
