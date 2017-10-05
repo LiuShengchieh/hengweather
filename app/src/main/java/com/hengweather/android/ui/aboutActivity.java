@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.hengweather.android.BaseActivity;
 import com.hengweather.android.R;
 
-public class aboutActivity extends BaseActivity {
+public class aboutActivity extends BaseActivity implements View.OnClickListener {
 
     public Toolbar aToolbar;
 
@@ -28,49 +28,53 @@ public class aboutActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        //产品建议
         TextView adviceText = (TextView) findViewById(R.id.advice);
+        adviceText.setOnClickListener(this);
+        //开源组件
         TextView openText = (TextView) findViewById(R.id.open_source_component);
+        openText.setOnClickListener(this);
+        //联系作者
         TextView contactText = (TextView) findViewById(R.id.contact);
+        contactText.setOnClickListener(this);
+        //查看源码
         TextView codeText = (TextView) findViewById(R.id.source_code);
+        codeText.setOnClickListener(this);
+        //推荐使用
+        TextView shareText = (TextView) findViewById(R.id.shareApp);
+        shareText.setOnClickListener(this);
 
-        adviceText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(aboutActivity.this, "advice", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.advice:
                 Uri uri = Uri.parse("mailto: liushengchieh@gmail.com");
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
                 startActivity(emailIntent);
-            }
-        });
-
-        openText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(aboutActivity.this, "open source component", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.open_source_component:
                 Intent openIntent = new Intent(aboutActivity.this, OpenSourceComponentActivity.class);
                 startActivity(openIntent);
-            }
-        });
-
-        contactText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(aboutActivity.this, "contact", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.contact:
                 Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
                 aboutIntent.setData(Uri.parse("https://liushengchieh.github.io/about/"));
                 startActivity(aboutIntent);
-            }
-        });
-
-        codeText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.source_code:
                 Intent codeIntent = new Intent(Intent.ACTION_VIEW);
                 codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
                 startActivity(codeIntent);
-            }
-        });
-
+                break;
+            case R.id.shareApp:
+                Intent textIntent = new Intent(Intent.ACTION_SEND);
+                textIntent.setType("text/plain");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "https://pan.baidu.com/s/1bEF1Wa");
+                startActivity(Intent.createChooser(textIntent, "分享"));
+                break;
+        }
     }
 
     @Override

@@ -123,8 +123,8 @@ public class WeatherFragment extends Fragment {
                 Intent textIntent = new Intent(Intent.ACTION_SEND);
                 textIntent.setType("text/plain");
                 textIntent.putExtra(Intent.EXTRA_TEXT, "没有人在寒冷时拥抱你，没有人在燥热时凉快你。" +
-                        "只有我一直陪伴你，嘘寒又问暖。看云卷云舒，感风起风落。欢迎下载「喵呜天气」：" +
-                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
+                        "只有我一直陪伴你，嘘寒又问暖。看云卷云舒，感风起雨落。欢迎下载喵呜天气(MeowWeather)：" +
+                        "https://pan.baidu.com/s/1bEF1Wa");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
         });
@@ -195,12 +195,6 @@ public class WeatherFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         String weatherId = getActivity().getIntent().getStringExtra("weather_id");
@@ -211,37 +205,6 @@ public class WeatherFragment extends Fragment {
         }
         Log.d(TAG, "onResume");
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.d(TAG, "onDestroyView");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.d(TAG, "onDetach");
-    }
-
 
     /*
 * 处理并展示 Weather 实体类中的数据
@@ -261,7 +224,7 @@ public class WeatherFragment extends Fragment {
 
         cityText.setText(cityName);
         //mToolbar.setTitle(cityName);
-        updateText.setText("Update Time: " + updateTime);
+        updateText.setText("Update Time - " + updateTime);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
