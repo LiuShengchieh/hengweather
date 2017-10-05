@@ -50,9 +50,10 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.advice:
-                Uri uri = Uri.parse("mailto: liushengchieh@gmail.com");
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, uri);
-                startActivity(emailIntent);
+                Intent data = new Intent(Intent.ACTION_SENDTO);
+                data.setData(Uri.parse("mailto: liushengchieh@gmail.com"));
+                data.putExtra(Intent.EXTRA_SUBJECT, "产品建议（MeowWeather）");
+                startActivity(data);
                 break;
             case R.id.open_source_component:
                 Intent openIntent = new Intent(aboutActivity.this, OpenSourceComponentActivity.class);
