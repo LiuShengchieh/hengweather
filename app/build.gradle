@@ -28,7 +28,10 @@ android {
     buildTypes {
         release {
             buildConfigField("boolean","API_DEBUG","false")
-            minifyEnabled false
+            //代码混淆
+            minifyEnabled true
+            //删除无用的Resource
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
