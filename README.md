@@ -37,6 +37,29 @@ Download Link: [MeowWeather](https://github.com/LiuShengchieh/hengweather/tree/m
 
 ***
 
+MeowWeather（喵呜天气）正式上架到酷安市场！  
+
+App Name: MeowWeather  
+Release Version: 1.0  
+
+Change Log:  
+1. 删除首页当前天气卡片分享功能  
+2. 删除关于页里的分享功能  
+
+Download Link: [MeowWeather](https://www.coolapk.com/apk/com.hengweather.android)    
+
+欢迎下载使用并给出您的意见或建议，多谢！
+
+另，欢迎关注我的微信公众号和博客：  
+
+公众号ID：零与梦里 (zeroistart)    
+Blog地址：http://www.cnblogs.com/liushengchieh/  
+
+Shengjie    
+2017.10.07  
+
+***
+
 ## 说明：
 1. App 的名字正式定为"MeowWeather"
 2. 开发工具：Android Studio + Git
@@ -52,12 +75,13 @@ Download Link: [MeowWeather](https://github.com/LiuShengchieh/hengweather/tree/m
 7. 首页显示当前天气、未来三天预报、空气质量、生活建议
 8. 圆形头像自定义（拍照或从相册选择）  
 
-## 安装：
-暂未在应用市场上架，可通过以下两种方式安装：
-1. Clone 代码，通过 Android Studio 运行安装  
-` git clone https://github.com/LiuShengchieh/hengweather.git `
-2. 存放在本项目 downloadApk 文件夹内的 APK 文件, 每次打包我都会更新  
-` https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk `
+## 安装：  
+1. 酷安应用市场下载链接：  
+` https://www.coolapk.com/apk/com.hengweather.android `  
+2. Clone 代码，通过 Android Studio 运行安装  
+` git clone https://github.com/LiuShengchieh/hengweather.git `  
+3. 存放在本项目 downloadApk 文件夹内的 APK 文件, 每次打包我都会更新  
+` https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk `  
 
 ## 截图：
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/d.png)
