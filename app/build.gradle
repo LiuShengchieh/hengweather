@@ -7,7 +7,7 @@ def releaseTime() {
 
 //设置发布时的版本号
 def getVersionName(){
-    return "2.0"
+    return "1.0"
 }
 
 android {
