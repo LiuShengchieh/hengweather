@@ -68,7 +68,8 @@ MeowWeather 在开发过程中使用了以下第三方开源类库、组件，�
 1. Litepal for Android https://github.com/LitePalFramework/LitePal
 2. OkHttp https://github.com/square/okhttp
 3. Glide https://github.com/bumptech/glide
-4. CityPicker https://github.com/zaaach/CityPicker
+4. CityPicker https://github.com/zaaach/CityPicker  
+5. CircleImageView https://github.com/hdodenhof/CircleImageView  
 
 ## 特别感谢：
 **亲爱的xty**
