@@ -13,7 +13,7 @@ hengweather 第一版正式发布！
 App Name: MeowWeather  
 Release Version: 1.0
 
-Download Link: [MeowWeather](https://pan.baidu.com/s/1bEF1Wa)
+Download Link: [MeowWeather](https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk)
 
 2017.09.16 Shengjie
 
@@ -29,7 +29,7 @@ Change Log:
 2. 关于页新增分享功能
 3. 天气数据页取消now之外的点击分享
 
-Download Link: [MeowWeather](https://pan.baidu.com/s/1bEF1Wa)
+Download Link: [MeowWeather](https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk)
 
 欢迎下载使用并给出您的意见或建议，多谢！
 
@@ -56,8 +56,8 @@ Download Link: [MeowWeather](https://pan.baidu.com/s/1bEF1Wa)
 暂未在应用市场上架，可通过以下两种方式安装：
 1. Clone 代码，通过 Android Studio 运行安装  
 ` git clone https://github.com/LiuShengchieh/hengweather.git `
-2. 存放在百度云盘里的 APK, 每次打包我都会更新  
-` https://pan.baidu.com/s/1bEF1Wa `
+2. 存放在本项目 downloadApk 文件夹内的 APK 文件, 每次打包我都会更新  
+` https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk `
 
 ## 截图：
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/d.png)
@@ -71,4 +71,4 @@ MeowWeather 在开发过程中使用了以下第三方开源类库、组件，�
 4. CityPicker https://github.com/zaaach/CityPicker
 
 ## 特别感谢：
-1. 亲爱的xty
+**亲爱的xty**
