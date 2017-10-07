@@ -117,7 +117,7 @@ public class WeatherFragment extends Fragment {
         aqiCardView = view.findViewById(R.id.cardView_aqi);
         suggestionCardView = view.findViewById(R.id.cardView_suggestion);
 
-        nowCardView.setOnClickListener(new View.OnClickListener() {
+        /*nowCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "Nice Today!", Toast.LENGTH_SHORT).show();
@@ -128,7 +128,7 @@ public class WeatherFragment extends Fragment {
                         "https://pan.baidu.com/s/1bEF1Wa");
                 startActivity(Intent.createChooser(textIntent, "分享"));
             }
-        });
+        });*/
 
 /*
         forecastCardView.setOnClickListener(new View.OnClickListener() {

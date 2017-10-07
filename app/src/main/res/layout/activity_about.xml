@@ -39,6 +39,7 @@
         android:layout_height="1dp"
         android:background="#D1D1D1" />
 
+<!--
     <TextView
         android:id="@+id/shareApp"
         android:layout_width="match_parent"
@@ -54,6 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#D1D1D1" />
+-->
 
     <TextView
         android:id="@+id/open_source_component"
