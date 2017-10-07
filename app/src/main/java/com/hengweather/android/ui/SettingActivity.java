@@ -12,7 +12,7 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
-import android.widget.ToggleButton;
+import android.widget.Switch;
 
 import com.hengweather.android.BaseActivity;
 import com.hengweather.android.MainActivity;
@@ -20,7 +20,7 @@ import com.hengweather.android.R;
 
 public class SettingActivity extends BaseActivity {
 
-    public ToggleButton toggleButton;
+    private Switch MySwitch;
 
     public Toolbar sToolbar;
 
@@ -39,19 +39,18 @@ public class SettingActivity extends BaseActivity {
         final String cityName = prefs.getString("cityName", "");
         final String degree = prefs.getString("degree", "");
         final String weatherInfo = prefs.getString("weatherInfo", "");
-        toggleButton = (ToggleButton) findViewById(R.id.sw);
 
-        // 进入设置页即自动关闭通知栏天气
-        toggleButton.setChecked(false);
+        //通知栏天气
         NotificationManager manager = (NotificationManager) getSystemService(
                 NOTIFICATION_SERVICE);
         manager.cancel(1);
-
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
+        MySwitch = (Switch) findViewById(R.id.MySwitch);
+        //默认关闭通知栏天气提醒
+        MySwitch.setChecked(false);
+        MySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
                     Intent intent = new Intent(SettingActivity.this, MainActivity.class);
                     PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
                     NotificationManager manager = (NotificationManager) getSystemService(
@@ -75,11 +74,11 @@ public class SettingActivity extends BaseActivity {
                 }
             }
         });
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

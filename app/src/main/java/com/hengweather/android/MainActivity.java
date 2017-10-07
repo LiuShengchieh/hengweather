@@ -34,6 +34,7 @@ import com.baidu.location.LocationClientOption;
 import com.hengweather.android.model.Common;
 import com.hengweather.android.ui.SettingActivity;
 import com.hengweather.android.ui.aboutActivity;
+import com.hengweather.android.util.L;
 import com.hengweather.android.util.Utility;
 import com.hengweather.android.view.CustomDialog;
 import com.zaaach.citypicker.CityPickerActivity;
@@ -68,6 +69,12 @@ public class MainActivity extends BaseActivity {
     private Button btn_camera;
     private Button btn_picture;
     private Button btn_cancel;
+
+    /*测试git
+    *
+    * ceshiceshi
+    *
+    * */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -395,7 +402,7 @@ public class MainActivity extends BaseActivity {
                         String city = location.getCity();
                         if (!TextUtils.isEmpty(city)) {
                             String cityName = city.replace("市", "");
-                            Log.i("定位成功", "当前城市为" + cityName);
+                            L.i("定位成功", "当前城市为" + cityName);
                             queryWeatherCode(cityName);
                             Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
                         } else {

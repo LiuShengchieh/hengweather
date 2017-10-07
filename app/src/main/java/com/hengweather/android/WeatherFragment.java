@@ -23,6 +23,7 @@ import com.hengweather.android.gson.Forecast;
 import com.hengweather.android.gson.Weather;
 import com.hengweather.android.service.AutoUpdateService;
 import com.hengweather.android.util.HttpUtil;
+import com.hengweather.android.util.L;
 import com.hengweather.android.util.StaticClass;
 import com.hengweather.android.util.Utility;
 
@@ -83,13 +84,13 @@ public class WeatherFragment extends Fragment {
             MainActivity mainActivity = (MainActivity) context;
             mToolbar = (Toolbar) mainActivity.findViewById(R.id.toolbar);
         }
-        Log.d(TAG, "onAttach");
+        L.d(TAG, "onAttach");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+        L.d(TAG, "onCreate");
     }
 
     @Override
@@ -184,14 +185,14 @@ public class WeatherFragment extends Fragment {
                 }
             }
         });
-        Log.d(TAG, "onCreateView");
+        L.d(TAG, "onCreateView");
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated");
+        L.d(TAG, "onActivityCreated");
     }
 
     @Override
@@ -201,9 +202,9 @@ public class WeatherFragment extends Fragment {
         if (weatherId != null) {
             requestWeather(weatherId);
         } else {
-            Log.d(TAG,"WeatherId is null");
+            L.d(TAG,"WeatherId is null");
         }
-        Log.d(TAG, "onResume");
+        L.d(TAG, "onResume");
     }
 
     /*

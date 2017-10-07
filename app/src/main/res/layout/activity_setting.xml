@@ -35,14 +35,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
-            <ToggleButton
-                android:id="@+id/sw"
-                style="@style/MySwitch"
+            <Switch
+                android:id="@+id/MySwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:textOff="@null"
-                android:textOn="@null"
                 android:gravity="center" />
 
         </LinearLayout>
