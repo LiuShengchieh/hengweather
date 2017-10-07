@@ -20,7 +20,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,12 +68,6 @@ public class MainActivity extends BaseActivity {
     private Button btn_camera;
     private Button btn_picture;
     private Button btn_cancel;
-
-    /*测试git
-    *
-    * ceshiceshi
-    *
-    * */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -190,17 +183,19 @@ public class MainActivity extends BaseActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    //切换城市
                     case R.id.add_city:
-                        //启动
                         startActivityForResult(new Intent(MainActivity.this, CityPickerActivity.class),
                                 REQUEST_CODE_PICK_CITY);
                         drawerLayout.closeDrawers();
                         break;
+                    //设置
                     case R.id.setting:
                         Intent SettingIntent = new Intent(MainActivity.this, SettingActivity.class);
                         startActivity(SettingIntent);
                         drawerLayout.closeDrawers();
                         break;
+                    //关于
                     case R.id.about:
                         Intent aboutIntent = new Intent(MainActivity.this, aboutActivity.class);
                         startActivity(aboutIntent);
@@ -283,10 +278,6 @@ public class MainActivity extends BaseActivity {
                     if (data != null) {
                         //拿到图片设置
                         setImageToView(data);
-                        //删除原来的图片
-                        if (tempFile != null) {
-                            tempFile.delete();
-                        }
                     }
                     break;
             }
@@ -298,7 +289,6 @@ public class MainActivity extends BaseActivity {
     public static final int CAMERA_REQUEST_CODE = 100;
     public static final int IMAGE_REQUEST_CODE = 101;
     public static final int RESULT_REQUEST_CODE = 102;
-    private File tempFile = null;
     private Uri imageUri;
 
     //跳转相机
