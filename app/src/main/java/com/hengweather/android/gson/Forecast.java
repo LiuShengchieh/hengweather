@@ -27,5 +27,8 @@ public class Forecast {
 
         @SerializedName("txt_d")
         public String info;
+
+        @SerializedName("code_d")
+        public int infocode;
     }
 }

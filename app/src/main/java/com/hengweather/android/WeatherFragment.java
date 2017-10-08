@@ -10,10 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -76,6 +76,13 @@ public class WeatherFragment extends Fragment {
     public CardView aqiCardView;
     public CardView suggestionCardView;
 
+    //天气质量
+    private TextView quality;
+    private TextView suggestion;
+
+    //天气预报
+    private ImageView info_image;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -112,61 +119,15 @@ public class WeatherFragment extends Fragment {
         swipeRefresh = view.findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary); // 下拉刷新进度条的颜色
 
+        quality = view.findViewById(R.id.quality);
+        suggestion = view.findViewById(R.id.suggestion);
+
+        info_image = view.findViewById(R.id.info_image);
+
         nowCardView = view.findViewById(R.id.cardView_now);
         forecastCardView = view.findViewById(R.id.cardView_forecast);
         aqiCardView = view.findViewById(R.id.cardView_aqi);
         suggestionCardView = view.findViewById(R.id.cardView_suggestion);
-
-        nowCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(getActivity(), "Nice Today!", Toast.LENGTH_SHORT).show();
-                Intent textIntent = new Intent(Intent.ACTION_SEND);
-                textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "没有人在寒冷时拥抱你，没有人在燥热时凉快你。" +
-                        "只有我一直陪伴你，嘘寒又问暖。看云卷云舒，感风起雨落。欢迎下载喵呜天气(MeowWeather)：" +
-                        "https://pan.baidu.com/s/1bEF1Wa");
-                startActivity(Intent.createChooser(textIntent, "分享"));
-            }
-        });
-
-/*
-        forecastCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent textIntent = new Intent(Intent.ACTION_SEND);
-                textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "天气预报知多少，喵呜天气少不了。既不想被雨淋，" +
-                        "又不想被日晒？那就快来下载「喵呜天气」吧：" +
-                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
-                startActivity(Intent.createChooser(textIntent, "分享"));
-            }
-        });
-
-        aqiCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent textIntent = new Intent(Intent.ACTION_SEND);
-                textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "天灰蒙蒙的，是雾还是霾？不要怕，「喵呜天气」告诉你：" +
-                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
-                startActivity(Intent.createChooser(textIntent, "分享"));
-            }
-        });
-
-        suggestionCardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent textIntent = new Intent(Intent.ACTION_SEND);
-                textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "今晚要跑步吗？出门穿什么衣服呀？会不会感冒呢？" +
-                        "不想被晒伤啊……快来下载「喵呜天气」，你可爱又贴心的生活小助手：" +
-                        "https://pan.baidu.com/s/1bEF1Wa ———— MeowWeather");
-                startActivity(Intent.createChooser(textIntent, "分享"));
-            }
-        });
-*/
-
 
         weatherId = (String) getArguments().get("weather_id");
         weatherLayout.setVisibility(View.INVISIBLE);
@@ -223,29 +184,218 @@ public class WeatherFragment extends Fragment {
         editor.putString("weatherInfo", weatherInfo);
         editor.apply();
 
+        //当前天气
         cityText.setText(cityName);
-        //mToolbar.setTitle(cityName);
         updateText.setText("Update Time - " + updateTime);
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
+
+        //三天预报
         forecastLayout.removeAllViews();
         for (Forecast forecast : weather.forecastList) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.forecast_item,
                     forecastLayout, false);
             TextView dateText = view.findViewById(R.id.date_text);
             TextView infoText = view.findViewById(R.id.info_text);
-            TextView maxText = view.findViewById(R.id.max_text);
-            TextView minText = view.findViewById(R.id.min_text);
+            TextView temperature_text = view.findViewById(R.id.temperature_text);
+            //日期
             dateText.setText(forecast.date);
+            //天气状况
             infoText.setText(forecast.more.info);
-            maxText.setText(forecast.temperature.max);
-            minText.setText(forecast.temperature.min);
+            //最高温最低温
+            temperature_text.setText(forecast.temperature.max + "°C" + "/" + forecast.temperature.min + "°C");
+
+            //白天天气状况图标
+            ImageView info_image = view.findViewById(R.id.info_image);
+            int infoCode = forecast.more.infocode;
+            switch (infoCode) {
+                case 100:
+                    info_image.setBackgroundResource(R.mipmap.sunny);
+                    break;
+                case 101:
+                    info_image.setBackgroundResource(R.mipmap.cloudy);
+                    break;
+                case 102:
+                    info_image.setBackgroundResource(R.mipmap.fewcloudy);
+                    break;
+                case 103:
+                    info_image.setBackgroundResource(R.mipmap.partlycloudy);
+                    break;
+                case 104:
+                    info_image.setBackgroundResource(R.mipmap.overcast);
+                    break;
+                case 200:
+                    info_image.setBackgroundResource(R.mipmap.windy);
+                    break;
+                case 201:
+                    info_image.setBackgroundResource(R.mipmap.calm);
+                    break;
+                case 202:
+                    info_image.setBackgroundResource(R.mipmap.lightbreeze);
+                    break;
+                case 203:
+                    info_image.setBackgroundResource(R.mipmap.moderate);
+                    break;
+                case 204:
+                    info_image.setBackgroundResource(R.mipmap.freshbreeze);
+                    break;
+                case 205:
+                    info_image.setBackgroundResource(R.mipmap.strongbreeze);
+                    break;
+                case 206:
+                    info_image.setBackgroundResource(R.mipmap.highwind);
+                    break;
+                case 207:
+                    info_image.setBackgroundResource(R.mipmap.gale);
+                    break;
+                case 208:
+                    info_image.setBackgroundResource(R.mipmap.stronggale);
+                    break;
+                case 209:
+                    info_image.setBackgroundResource(R.mipmap.storm);
+                    break;
+                case 210:
+                    info_image.setBackgroundResource(R.mipmap.violentstorm);
+                    break;
+                case 211:
+                    info_image.setBackgroundResource(R.mipmap.hurricane);
+                    break;
+                case 212:
+                    info_image.setBackgroundResource(R.mipmap.tornado);
+                    break;
+                case 213:
+                    info_image.setBackgroundResource(R.mipmap.tropical);
+                    break;
+                case 300:
+                    info_image.setBackgroundResource(R.mipmap.showerrain);
+                    break;
+                case 301:
+                    info_image.setBackgroundResource(R.mipmap.heavyshowerrain);
+                    break;
+                case 302:
+                    info_image.setBackgroundResource(R.mipmap.thundershower);
+                    break;
+                case 303:
+                    info_image.setBackgroundResource(R.mipmap.heavythunder);
+                    break;
+                case 304:
+                    info_image.setBackgroundResource(R.mipmap.hail);
+                    break;
+                case 305:
+                    info_image.setBackgroundResource(R.mipmap.lightrain);
+                    break;
+                case 306:
+                    info_image.setBackgroundResource(R.mipmap.moderaterain);
+                    break;
+                case 307:
+                    info_image.setBackgroundResource(R.mipmap.heavyrain);
+                    break;
+                case 308:
+                    info_image.setBackgroundResource(R.mipmap.extremerain);
+                    break;
+                case 309:
+                    info_image.setBackgroundResource(R.mipmap.drizzlerain);
+                    break;
+                case 310:
+                    info_image.setBackgroundResource(R.mipmap.rainstorm);
+                    break;
+                case 311:
+                    info_image.setBackgroundResource(R.mipmap.heavystorm);
+                    break;
+                case 312:
+                    info_image.setBackgroundResource(R.mipmap.severestrom);
+                    break;
+                case 313:
+                    info_image.setBackgroundResource(R.mipmap.freezingrain);
+                    break;
+                case 400:
+                    info_image.setBackgroundResource(R.mipmap.lightsnow);
+                    break;
+                case 401:
+                    info_image.setBackgroundResource(R.mipmap.moderatesnow);
+                    break;
+                case 402:
+                    info_image.setBackgroundResource(R.mipmap.heavysnow);
+                    break;
+                case 403:
+                    info_image.setBackgroundResource(R.mipmap.snowstorm);
+                    break;
+                case 404:
+                    info_image.setBackgroundResource(R.mipmap.sleet);
+                    break;
+                case 405:
+                    info_image.setBackgroundResource(R.mipmap.rainandsnow);
+                    break;
+                case 406:
+                    info_image.setBackgroundResource(R.mipmap.showersnow);
+                    break;
+                case 407:
+                    info_image.setBackgroundResource(R.mipmap.snowflurry);
+                    break;
+                case 500:
+                    info_image.setBackgroundResource(R.mipmap.mist);
+                    break;
+                case 501:
+                    info_image.setBackgroundResource(R.mipmap.foggy);
+                    break;
+                case 502:
+                    info_image.setBackgroundResource(R.mipmap.haze);
+                    break;
+                case 503:
+                    info_image.setBackgroundResource(R.mipmap.sand);
+                    break;
+                case 504:
+                    info_image.setBackgroundResource(R.mipmap.dust);
+                    break;
+                case 507:
+                    info_image.setBackgroundResource(R.mipmap.duststorm);
+                    break;
+                case 508:
+                    info_image.setBackgroundResource(R.mipmap.sandstorm);
+                    break;
+                case 900:
+                    info_image.setBackgroundResource(R.mipmap.hot);
+                    break;
+                case 901:
+                    info_image.setBackgroundResource(R.mipmap.cold);
+                    break;
+                case 999:
+                    info_image.setBackgroundResource(R.mipmap.unknown);
+                    break;
+            }
+
             forecastLayout.addView(view);
         }
+
+        //天气质量
         if (weather.aqi != null) {
             aqiText.setText(weather.aqi.city.aqi);
             pm25Text.setText(weather.aqi.city.pm25);
+            String pm25Number = weather.aqi.city.pm25;
+            int pm25N = Integer.parseInt(pm25Number);
+            //判断天气质量
+            if (pm25N >= 0 & pm25N <= 35) {
+                quality.setText("优");
+                suggestion.setText("深呼吸，闭好你的眼睛");
+            } else if (pm25N > 35 & pm25N <= 75) {
+                quality.setText("良");
+                suggestion.setText("铲屎官，正常活动喔");
+            } else if (pm25N > 75 & pm25N <= 115) {
+                quality.setText("轻污染");
+                suggestion.setText("敏感的铲屎官少活动喔");
+            } else if (pm25N > 115 & pm25N <= 150) {
+                quality.setText("中污染");
+                suggestion.setText("减少室外活动，从喵咪做起");
+            } else if (pm25N > 150 & pm25N <= 250) {
+                quality.setText("重污染");
+                suggestion.setText("铲屎官不要出门啦！");
+            } else if (pm25N > 250) {
+                quality.setText("危险!!!");
+                suggestion.setText("喵呜天气已奄奄一息...");
+            }
         }
+
+        //生活建议
         String sport = "运动建议：" + weather.suggestion.sport.info;
         String drsg = "穿衣指数：" + weather.suggestion.drsg.info;
         String flu = "感冒指数：" + weather.suggestion.flu.info;
@@ -297,8 +447,6 @@ public class WeatherFragment extends Fragment {
                             editor.putString("weather", responseText);
                             editor.apply();
                             showWeatherInfo(weather);
-                            //Toast.makeText(getActivity(), "天气信息已最新:-)",
-                            //      Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(getActivity(), "获取天气信息失败:-(",
                                     Toast.LENGTH_SHORT).show();
