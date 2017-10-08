@@ -76,6 +76,10 @@ public class WeatherFragment extends Fragment {
     public CardView aqiCardView;
     public CardView suggestionCardView;
 
+    //天气质量
+    private TextView quality;
+    private TextView suggestion;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -111,6 +115,9 @@ public class WeatherFragment extends Fragment {
         uvText = view.findViewById(R.id.uv_text);
         swipeRefresh = view.findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary); // 下拉刷新进度条的颜色
+
+        quality = view.findViewById(R.id.quality);
+        suggestion = view.findViewById(R.id.suggestion);
 
         nowCardView = view.findViewById(R.id.cardView_now);
         forecastCardView = view.findViewById(R.id.cardView_forecast);
@@ -242,10 +249,35 @@ public class WeatherFragment extends Fragment {
             minText.setText(forecast.temperature.min);
             forecastLayout.addView(view);
         }
+
+        //天气质量
         if (weather.aqi != null) {
             aqiText.setText(weather.aqi.city.aqi);
             pm25Text.setText(weather.aqi.city.pm25);
+            String pm25Number = weather.aqi.city.pm25;
+            int pm25N = Integer.parseInt(pm25Number);
+            //判断天气质量
+            if (pm25N >= 0 & pm25N <= 35) {
+                quality.setText("优");
+                suggestion.setText("深呼吸，闭好你的眼睛");
+            } else if (pm25N > 35 & pm25N <= 75) {
+                quality.setText("良");
+                suggestion.setText("铲屎官，正常活动喔");
+            } else if (pm25N > 75 & pm25N <= 115) {
+                quality.setText("轻污染");
+                suggestion.setText("敏感的铲屎官少活动喔");
+            } else if (pm25N > 115 & pm25N <= 150) {
+                quality.setText("中污染");
+                suggestion.setText("减少室外活动，从喵咪做起");
+            } else if (pm25N > 150 & pm25N <= 250) {
+                quality.setText("重污染");
+                suggestion.setText("铲屎官不要出门啦！");
+            } else if (pm25N > 250) {
+                quality.setText("危险!!!");
+                suggestion.setText("喵呜天气已奄奄一息...");
+            }
         }
+
         String sport = "运动建议：" + weather.suggestion.sport.info;
         String drsg = "穿衣指数：" + weather.suggestion.drsg.info;
         String flu = "感冒指数：" + weather.suggestion.flu.info;

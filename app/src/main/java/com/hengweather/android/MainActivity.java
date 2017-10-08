@@ -30,7 +30,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.hengweather.android.model.Common;
 import com.hengweather.android.ui.SettingActivity;
 import com.hengweather.android.ui.aboutActivity;
 import com.hengweather.android.util.L;
@@ -107,7 +106,7 @@ public class MainActivity extends BaseActivity {
 
     private void requestLocation() {
         initLocation(); // 初始化百度地图定位
-        mLocationClient.start();
+        mLocationClient.start(); //开始定位
     }
 
     @Override
@@ -258,7 +257,8 @@ public class MainActivity extends BaseActivity {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
             if (data != null){
                 String cityName = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
-                queryWeatherCode(cityName);
+                //queryWeatherCode(cityName);
+                toShowWeather(cityName);
             }
         }
 
@@ -366,6 +366,7 @@ public class MainActivity extends BaseActivity {
         Utility.putImageToShare(this, icon_image);
     }
 
+    //初始化百度定位
     private void initLocation(){
 
         LocationClientOption option = new LocationClientOption();
@@ -390,17 +391,20 @@ public class MainActivity extends BaseActivity {
                 public void run() {
                     if (location != null) {
                         String city = location.getCity();
-                        if (!TextUtils.isEmpty(city)) {
-                            String cityName = city.replace("市", "");
-                            L.i("定位成功", "当前城市为" + cityName);
-                            queryWeatherCode(cityName);
-                            Toast.makeText(MainActivity.this, "当前城市" + cityName, Toast.LENGTH_SHORT).show();
+                        L.i("城市：", city);
+                        String district = location.getDistrict();
+                        L.i("区县：", district);
+                        if (!TextUtils.isEmpty(district)) {
+                            L.i("定位成功", "当前区县为" + district);
+                            toShowWeather(district);
+                            //Toast.makeText(MainActivity.this, "当前城市" + district, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-(", Toast.LENGTH_SHORT).show();
                             //定位失败加载默认城市
                             String cityName = "上海";
-                            queryWeatherCode(cityName);
+                            toShowWeather(cityName);
                         }
+                        //停止定位
                         mLocationClient.stop();
                     }
                 }
@@ -408,11 +412,9 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 转换城市编码
-     */
-    private void queryWeatherCode(String cityName) {
-        weatherId = Common.getCityIdByName(cityName);
+    //去显示天气数据
+    private void toShowWeather(String cityName) {
+        weatherId = cityName;
         if (weatherId != null) {
             WeatherFragment weatherFragment = new WeatherFragment();
             Bundle bundle = new Bundle();
@@ -424,6 +426,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    //连按两次退出app
     private long exitTime = 0;
     @Override
     public void onBackPressed() {

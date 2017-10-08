@@ -39,12 +39,11 @@
         android:layout_height="1dp"
         android:background="#D1D1D1" />
 
-<!--
     <TextView
         android:id="@+id/shareApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="推荐使用"
+        android:text="分享推荐"
         android:textSize="17sp"
         android:layout_gravity="center"
         android:padding="20dp"
@@ -55,7 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#D1D1D1" />
--->
 
     <TextView
         android:id="@+id/open_source_component"

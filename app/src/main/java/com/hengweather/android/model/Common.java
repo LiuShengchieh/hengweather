@@ -1,8 +1,11 @@
+/*
 package com.hengweather.android.model;
 
+*/
 /**
  * Created by liushengjie on 2017/9/1.
- */
+ *//*
+
 
 public class Common {
 
@@ -40,9 +43,11 @@ public class Common {
             "CN101160901陇南CN101161001临夏CN101161101甘南CN101161201白银CN101161301嘉峪关CN101161401银川CN101170101石嘴山CN101170201吴忠CN101170301固原CN101170401中卫CN101170501\n";
 
 
-    /*
+    */
+/*
     * 通过城市名得到城市 ID。 若失败，则返回默认城市 ID（上海CN101020100）。
-    * */
+    * *//*
+
     public static String getCityIdByName(String cityName){
         String weatherId = null;
         int  startIndex = Common.CITYIDS.indexOf(cityName)+ cityName.length() ;// 开始截取的位置
@@ -58,3 +63,4 @@ public class Common {
 }
 
 
+*/

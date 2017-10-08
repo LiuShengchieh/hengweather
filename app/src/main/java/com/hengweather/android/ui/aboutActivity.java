@@ -40,9 +40,9 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         //查看源码
         TextView codeText = (TextView) findViewById(R.id.source_code);
         codeText.setOnClickListener(this);
-        //推荐使用
-        /*TextView shareText = (TextView) findViewById(R.id.shareApp);
-        shareText.setOnClickListener(this);*/
+        //分享推荐
+        TextView shareText = (TextView) findViewById(R.id.shareApp);
+        shareText.setOnClickListener(this);
 
     }
 
@@ -69,12 +69,12 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
                 codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
                 startActivity(codeIntent);
                 break;
-            /*case R.id.shareApp:
+            case R.id.shareApp:
                 Intent textIntent = new Intent(Intent.ACTION_SEND);
                 textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "https://pan.baidu.com/s/1bEF1Wa");
+                textIntent.putExtra(Intent.EXTRA_TEXT, "https://www.coolapk.com/apk/com.hengweather.android");
                 startActivity(Intent.createChooser(textIntent, "分享"));
-                break;*/
+                break;
         }
     }
 
