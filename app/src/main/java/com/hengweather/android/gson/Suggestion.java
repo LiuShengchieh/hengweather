@@ -1,7 +1,6 @@
 package com.hengweather.android.gson;
 
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.internal.Streams;
 
 /**
  * Created by liushengjie on 2017/8/15.

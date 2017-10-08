@@ -397,7 +397,7 @@ public class MainActivity extends BaseActivity {
                         if (!TextUtils.isEmpty(district)) {
                             L.i("定位成功", "当前区县为" + district);
                             toShowWeather(district);
-                            //Toast.makeText(MainActivity.this, "当前城市" + district, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "当前位置：" + district, Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-(", Toast.LENGTH_SHORT).show();
                             //定位失败加载默认城市
