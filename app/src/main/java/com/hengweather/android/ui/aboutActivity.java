@@ -1,5 +1,7 @@
 package com.hengweather.android.ui;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +45,9 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         //分享推荐
         TextView shareText = (TextView) findViewById(R.id.shareApp);
         shareText.setOnClickListener(this);
+        //更新app
+        TextView updateApp = (TextView) findViewById(R.id.updateApp);
+        updateApp.setOnClickListener(this);
 
     }
 
@@ -75,6 +80,10 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
                 textIntent.putExtra(Intent.EXTRA_TEXT, "https://www.coolapk.com/apk/com.hengweather.android");
                 startActivity(Intent.createChooser(textIntent, "分享"));
                 break;
+            case R.id.updateApp:
+                String packageN = "com.hengweather.android";
+                goToMarket(aboutActivity.this, packageN);
+                break;
         }
     }
 
@@ -88,4 +97,16 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         }
         return true;
     }
+
+    //打开应用市场
+    public static void goToMarket(Context context, String packageName) {
+        Uri uri = Uri.parse("market://details?id=" + packageName);
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            context.startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
