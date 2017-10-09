@@ -63,7 +63,7 @@ Shengjie
 MeowWeather（喵呜天气）酷安市场第二版发布！
 
 App Name: MeowWeather  
-Realease Version: 1.1  
+Release Version: 1.1  
 
 Change Log:
 1. 首页天气数据页优化，更加活泼
