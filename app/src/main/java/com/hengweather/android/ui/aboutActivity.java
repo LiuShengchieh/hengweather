@@ -55,30 +55,50 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.advice:
-                Intent data = new Intent(Intent.ACTION_SENDTO);
-                data.setData(Uri.parse("mailto: liushengchieh@gmail.com"));
-                data.putExtra(Intent.EXTRA_SUBJECT, "产品建议（MeowWeather）");
-                startActivity(data);
+                try {
+                    Intent data = new Intent(Intent.ACTION_SENDTO);
+                    data.setData(Uri.parse("mailto: liushengchieh@gmail.com"));
+                    data.putExtra(Intent.EXTRA_SUBJECT, "产品建议（MeowWeather）");
+                    startActivity(data);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.open_source_component:
-                Intent openIntent = new Intent(aboutActivity.this, OpenSourceComponentActivity.class);
-                startActivity(openIntent);
+                try {
+                    Intent openIntent = new Intent(aboutActivity.this, OpenSourceComponentActivity.class);
+                    startActivity(openIntent);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.contact:
-                Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
-                aboutIntent.setData(Uri.parse("https://liushengchieh.github.io/about/"));
-                startActivity(aboutIntent);
+                try {
+                    Intent aboutIntent = new Intent(Intent.ACTION_VIEW);
+                    aboutIntent.setData(Uri.parse("https://liushengchieh.github.io/about/"));
+                    startActivity(aboutIntent);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.source_code:
-                Intent codeIntent = new Intent(Intent.ACTION_VIEW);
-                codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
-                startActivity(codeIntent);
+                try {
+                    Intent codeIntent = new Intent(Intent.ACTION_VIEW);
+                    codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
+                    startActivity(codeIntent);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.shareApp:
-                Intent textIntent = new Intent(Intent.ACTION_SEND);
-                textIntent.setType("text/plain");
-                textIntent.putExtra(Intent.EXTRA_TEXT, "https://www.coolapk.com/apk/com.hengweather.android");
-                startActivity(Intent.createChooser(textIntent, "分享"));
+                try {
+                    Intent textIntent = new Intent(Intent.ACTION_SEND);
+                    textIntent.setType("text/plain");
+                    textIntent.putExtra(Intent.EXTRA_TEXT, "https://www.coolapk.com/apk/com.hengweather.android");
+                    startActivity(Intent.createChooser(textIntent, "分享"));
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.updateApp:
                 String packageN = "com.hengweather.android";
