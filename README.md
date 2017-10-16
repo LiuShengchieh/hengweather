@@ -88,6 +88,22 @@ Shengjie
 
 ***
 
+MeowWeather 已上架到华为应用市场！  
+
+App Name: MeowWeather  
+Release Version: 1.1  
+
+下载链接：  
+[MeowWeather](http://app.hicloud.com/app/C100105467)  
+
+欢迎下载使用，任何意见或建议请评论或email！  
+多谢～  
+
+Shengjie  
+2017.10.16
+
+***
+
 ## 说明：
 1. App 的名字正式定为"MeowWeather"
 2. 开发工具：Android Studio + Git
@@ -106,8 +122,8 @@ Shengjie
 ## 安装：  
 1. 酷安应用市场下载链接：  
 ` https://www.coolapk.com/apk/com.hengweather.android `  
-2. Clone 代码，通过 Android Studio 运行安装  
-` git clone https://github.com/LiuShengchieh/hengweather.git `  
+2. 华为应用市场下载链接：  
+`http://app.hicloud.com/app/C100105467`  
 
 ## 截图：
 ![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/f.png)
@@ -123,4 +139,5 @@ MeowWeather 在开发过程中使用了以下第三方开源类库、组件，�
 5. CircleImageView https://github.com/hdodenhof/CircleImageView  
 
 ## 特别感谢：
-**亲爱的xty**
+**亲爱的xty**  
+**姐姐**
