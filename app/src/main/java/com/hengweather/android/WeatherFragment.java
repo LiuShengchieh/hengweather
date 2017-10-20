@@ -117,14 +117,18 @@ public class WeatherFragment extends Fragment {
         fluText = view.findViewById(R.id.flu_text);
         uvText = view.findViewById(R.id.uv_text);
         swipeRefresh = view.findViewById(R.id.swipe_refresh);
-        swipeRefresh.setColorSchemeResources(R.color.colorPrimary); // 下拉刷新进度条的颜色
+        // 下拉刷新进度条的颜色
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
 
         quality = view.findViewById(R.id.quality);
         suggestion = view.findViewById(R.id.suggestion);
 
         info_image = view.findViewById(R.id.info_image);
 
+        //当前天气
         nowCardView = view.findViewById(R.id.cardView_now);
+        //nowCardView.setOnClickListener(this);
+
         forecastCardView = view.findViewById(R.id.cardView_forecast);
         aqiCardView = view.findViewById(R.id.cardView_aqi);
         suggestionCardView = view.findViewById(R.id.cardView_suggestion);
@@ -174,7 +178,7 @@ public class WeatherFragment extends Fragment {
     private void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
-        String degree = weather.now.temperature + "°C";
+        String degree = weather.now.temperature;
         String weatherInfo = weather.now.more.info;
 
         // 存储通知栏的天气数据
@@ -187,7 +191,7 @@ public class WeatherFragment extends Fragment {
         //当前天气
         cityText.setText(cityName);
         updateText.setText("Update Time - " + updateTime);
-        degreeText.setText(degree);
+        degreeText.setText(degree + "°C");
         weatherInfoText.setText(weatherInfo);
 
         //三天预报
@@ -374,19 +378,19 @@ public class WeatherFragment extends Fragment {
             String pm25Number = weather.aqi.city.pm25;
             int pm25N = Integer.parseInt(pm25Number);
             //判断天气质量
-            if (pm25N >= 0 & pm25N <= 35) {
+            if (pm25N >= 0 && pm25N <= 35) {
                 quality.setText("优");
                 suggestion.setText("深呼吸，闭好你的眼睛");
-            } else if (pm25N > 35 & pm25N <= 75) {
+            } else if (pm25N > 35 && pm25N <= 75) {
                 quality.setText("良");
                 suggestion.setText("铲屎官，正常活动喔");
-            } else if (pm25N > 75 & pm25N <= 115) {
+            } else if (pm25N > 75 && pm25N <= 115) {
                 quality.setText("轻污染");
                 suggestion.setText("敏感的铲屎官少活动喔");
-            } else if (pm25N > 115 & pm25N <= 150) {
+            } else if (pm25N > 115 && pm25N <= 150) {
                 quality.setText("中污染");
                 suggestion.setText("减少室外活动，从喵咪做起");
-            } else if (pm25N > 150 & pm25N <= 250) {
+            } else if (pm25N > 150 && pm25N <= 250) {
                 quality.setText("重污染");
                 suggestion.setText("铲屎官不要出门啦！");
             } else if (pm25N > 250) {
@@ -458,5 +462,18 @@ public class WeatherFragment extends Fragment {
         });
 
     }
+
+/*    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.cardView_now:
+                shareWeather();
+                break;
+        }
+    }
+
+    private void shareWeather() {
+
+    }*/
 
 }

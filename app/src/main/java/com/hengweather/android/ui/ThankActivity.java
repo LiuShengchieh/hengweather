@@ -8,17 +8,17 @@ import android.view.View;
 import com.hengweather.android.BaseActivity;
 import com.hengweather.android.R;
 
-public class OpenSourceComponentActivity extends BaseActivity {
+public class ThankActivity extends BaseActivity {
 
     public Toolbar oToolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_source_component);
+        setContentView(R.layout.activity_thank);
 
         oToolbar = (Toolbar) findViewById(R.id.toolbar);
-        oToolbar.setTitle("开源组件");
+        oToolbar.setTitle(R.string.thank);
         setSupportActionBar(oToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

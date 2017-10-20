@@ -69,7 +69,7 @@
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
 
-        <activity android:name=".ui.OpenSourceComponentActivity" />
+        <activity android:name=".ui.ThankActivity" />
 
         <activity android:name=".ui.WelcomeActivity">
             <intent-filter>

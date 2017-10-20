@@ -257,7 +257,6 @@ public class MainActivity extends BaseActivity {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
             if (data != null){
                 String cityName = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
-                //queryWeatherCode(cityName);
                 toShowWeather(cityName);
             }
         }

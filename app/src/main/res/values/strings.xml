@@ -3,54 +3,7 @@
     <string name="drawer_open">Open drawer</string>
     <string name="drawer_close">Close drawer</string>
 
-    <string name="app_name">MeowWeather</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--开源组件-->
-    <string name="intro_meowweather">MeowWeather 在开发过程中使用了以下第三方开源组件，在此列出表示感谢与敬意。</string>
-    <string name="litepal">Litepal for Android</string>
-    <string name="litepal_license">
-Copyright (C)  Tony Green, LitePal Framework Open Source Project\n
-Licensed under the Apache License, Version 2.0 (the "License");\n
-you may not use this file except in compliance with the License.\n
-You may obtain a copy of the License at\n\n
-        http://www.apache.org/licenses/LICENSE-2.0\n\n
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
-See the License for the specific language governing permissions andlimitations under the License.\n
-    </string>
-    <!--<string name="xty">XTY</string>
-    <string name="xty_intro">
-        可爱又善良，温柔且甜美。超级超级超级超级超级超级漂亮的小姑娘 ———— 就是我老婆啦！\n
-    </string>-->
-    <string name="okhttp">OkHttp</string>
-    <string name="okhttp_license">
-        An HTTP &amp; HTTP/2 client for Android and Java applications.\n\n
-Licensed under the Apache License, Version 2.0 (the "License");\n
-you may not use this file except in compliance with the License.\n
-You may obtain a copy of the License at\n\n
-
-   http://www.apache.org/licenses/LICENSE-2.0\n\n
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n
-See the License for the specific language governing permissions and
-limitations under the License.\n
-    </string>
-    <string name="glide">Glide</string>
-    <string name="glide_license">
-        Glide is a fast and efficient open source media management and image loading framework for Android
-        that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.\n\n
-
-        License:\n
-        BSD, part MIT and Apache 2.0.\n
-    </string>
-    <string name="citypicker">CityPicker</string>
-    <string name="citypicker_license">
-        https://github.com/zaaach/CityPicker\n\n
-    </string>
-
 
 </resources>

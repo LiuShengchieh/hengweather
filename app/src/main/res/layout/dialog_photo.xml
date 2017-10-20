@@ -21,7 +21,7 @@
             android:background="@drawable/btn_camera"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:text="拍照"/>
+            android:text="@string/photo"/>
 
         <View
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:background="@drawable/btn_picture"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:text="相册"/>
+            android:text="@string/picture"/>
 
         <Button
             android:id="@+id/btn_cancel"
@@ -46,7 +46,7 @@
             android:background="@drawable/btn_cancel"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:text="取消"/>
+            android:text="@string/cancel"/>
 
     </LinearLayout>
 

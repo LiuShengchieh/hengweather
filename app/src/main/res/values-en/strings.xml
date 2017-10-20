@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--app名字-->
+    <string name="app_name">MeowWeather</string>
+    <!--感谢列表-->
+    <string name="intro_meowweather">MeowWeather will not exist without all of you. Thank you, Best wishes!</string>
+    <string name="litepal">Litepal for Android</string>
+    <string name="litepal_license">
+        https://github.com/LitePalFramework/LitePal
+    </string>
+    <string name="okhttp">OkHttp</string>
+    <string name="okhttp_license">
+        https://github.com/square/okhttp
+    </string>
+    <string name="glide">Glide</string>
+    <string name="glide_license">
+        https://github.com/bumptech/glide
+    </string>
+    <string name="citypicker">CityPicker</string>
+    <string name="citypicker_license">
+        https://github.com/zaaach/CityPicker
+    </string>
+    <string name="gson">gson</string>
+    <string name="gson_link">
+        https://github.com/google/gson
+    </string>
+    <string name="circleimageview">circleimageview</string>
+    <string name="circleimageview_link">
+        https://github.com/hdodenhof/CircleImageView
+    </string>
+    <string name="bugly">bugly</string>
+    <string name="bugly_link">
+        https://bugly.qq.com/v2/
+    </string>
+    <string name="dyhdm">《The First Line Code》</string>
+    <string name="dyhdm_link">
+        http://blog.csdn.net/guolin_blog/
+    </string>
+    <string name="heweather">HeWeather</string>
+    <string name="heweather_link">
+        https://www.heweather.com
+    </string>
+    <string name="xty">
+        Honey
+    </string>
+    <string name="sister">
+        Yaoyao
+    </string>
+
+    <!--侧边栏-->
+    <string name="changecity">Switching City</string>
+    <string name="setting">Settings</string>
+    <string name="about">About</string>
+
+    <!--关于-->
+    <string name="advice">Feedback</string>
+    <string name="contact">Contact</string>
+    <string name="share">Share</string>
+    <string name="thank">Thanks</string>
+    <string name="update">Update</string>
+
+    <!--设置-->
+    <string name="noti">Weather Slider</string>
+
+    <!--天气页面-->
+    <string name="airquality">Air Quality</string>
+    <string name="forecast">Forecast</string>
+    <string name="life_advice">Suggestion</string>
+
+    <!--头像选取-->
+    <string name="photo">Take a Picture</string>
+    <string name="picture">Photo Album</string>
+    <string name="cancel">Cancel</string>
+    <string name="intro">MeowWeather, don\'t catch a cold any more.</string>
+
+</resources>

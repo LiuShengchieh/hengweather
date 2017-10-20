@@ -25,7 +25,7 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_about);
 
         aToolbar = (Toolbar) findViewById(R.id.toolbar);
-        aToolbar.setTitle("关于");
+        aToolbar.setTitle(R.string.about);
         setSupportActionBar(aToolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -33,15 +33,12 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         //产品建议
         TextView adviceText = (TextView) findViewById(R.id.advice);
         adviceText.setOnClickListener(this);
-        //开源组件
-        TextView openText = (TextView) findViewById(R.id.open_source_component);
+        //特别感谢
+        TextView openText = (TextView) findViewById(R.id.tv_thank);
         openText.setOnClickListener(this);
         //联系作者
         TextView contactText = (TextView) findViewById(R.id.contact);
         contactText.setOnClickListener(this);
-        //查看源码
-        TextView codeText = (TextView) findViewById(R.id.source_code);
-        codeText.setOnClickListener(this);
         //分享推荐
         TextView shareText = (TextView) findViewById(R.id.shareApp);
         shareText.setOnClickListener(this);
@@ -57,16 +54,16 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
             case R.id.advice:
                 try {
                     Intent data = new Intent(Intent.ACTION_SENDTO);
-                    data.setData(Uri.parse("mailto: liushengchieh@gmail.com"));
+                    data.setData(Uri.parse("mailto: shengjiedev@foxmail.com"));
                     data.putExtra(Intent.EXTRA_SUBJECT, "产品建议（MeowWeather）");
                     startActivity(data);
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
                 }
                 break;
-            case R.id.open_source_component:
+            case R.id.tv_thank:
                 try {
-                    Intent openIntent = new Intent(aboutActivity.this, OpenSourceComponentActivity.class);
+                    Intent openIntent = new Intent(aboutActivity.this, ThankActivity.class);
                     startActivity(openIntent);
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
@@ -81,20 +78,12 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
                 break;
-            case R.id.source_code:
-                try {
-                    Intent codeIntent = new Intent(Intent.ACTION_VIEW);
-                    codeIntent.setData(Uri.parse("https://github.com/LiuShengchieh/hengweather"));
-                    startActivity(codeIntent);
-                } catch (ActivityNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
             case R.id.shareApp:
                 try {
                     Intent textIntent = new Intent(Intent.ACTION_SEND);
                     textIntent.setType("text/plain");
-                    textIntent.putExtra(Intent.EXTRA_TEXT, "https://www.coolapk.com/apk/com.hengweather.android");
+                    textIntent.putExtra(Intent.EXTRA_TEXT, "喵呜天气酷安应用市场" +
+                            "下载链接：https://www.coolapk.com/apk/com.hengweather.android");
                     startActivity(Intent.createChooser(textIntent, "分享"));
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
