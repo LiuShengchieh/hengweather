@@ -127,7 +127,6 @@ public class WeatherFragment extends Fragment {
 
         //当前天气
         nowCardView = view.findViewById(R.id.cardView_now);
-        //nowCardView.setOnClickListener(this);
 
         forecastCardView = view.findViewById(R.id.cardView_forecast);
         aqiCardView = view.findViewById(R.id.cardView_aqi);
@@ -462,18 +461,5 @@ public class WeatherFragment extends Fragment {
         });
 
     }
-
-/*    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.cardView_now:
-                shareWeather();
-                break;
-        }
-    }
-
-    private void shareWeather() {
-
-    }*/
 
 }
