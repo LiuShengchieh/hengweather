@@ -429,11 +429,12 @@ public class MainActivity extends BaseActivity {
     private long exitTime = 0;
     @Override
     public void onBackPressed() {
+        String appName = getString(R.string.app_name);
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             if (System.currentTimeMillis() - exitTime > 2000) {
-                Toast.makeText(this, "再按一次退出MeowWeather", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "再按一次退出" + appName, Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
                 finish();

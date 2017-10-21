@@ -37,11 +37,16 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".ui.SettingActivity" />
-        <activity android:name=".ui.aboutActivity" />
+        <activity
+            android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.aboutActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".service.AutoUpdateService"
@@ -69,9 +74,13 @@
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
 
-        <activity android:name=".ui.ThankActivity" />
+        <activity
+            android:name=".ui.ThankActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.WelcomeActivity">
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
