@@ -42,30 +42,41 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        //获取天气数据
         SharedPreferences prefs = getSharedPreferences("notification", MODE_PRIVATE);
         cityName = prefs.getString("cityName", "");
         degree = prefs.getString("degree", "");
         weatherInfo = prefs.getString("weatherInfo", "");
 
-        //根据温度高低设置不同通知
-        int intDegree = Integer.parseInt(degree);
-        if (intDegree >= 28) {
-            degreeText = "喵呜，谁来帮我擦擦汗？";
-        } else if (intDegree >= 24 && intDegree < 28) {
-            degreeText = "喵呜，有点小热诶";
-        } else if (intDegree >= 21 && intDegree < 24) {
-            degreeText = "喵呜，这个温度我给好评";
-        } else if (intDegree >= 18 && intDegree < 21) {
-            degreeText = "喵呜，凉风习习伴我成长";
-        } else if (intDegree >= 15 && intDegree < 18) {
-            degreeText = "喵呜，温凉恭谦让";
-        } else if (intDegree >= 11 && intDegree < 15) {
-            degreeText = "喵呜，毛衣毛衣快上身";
-        } else if (intDegree >= 6 && intDegree < 11) {
-            degreeText = "喵呜，冷死宝宝了";
-        } else if (intDegree < 6) {
-            degreeText = "我去，太tm冷了。。。";
+        //判断是否下雨
+        if (weatherInfo.equals("阵雨") | weatherInfo.equals("强阵雨") | weatherInfo.equals("雷阵雨") |
+                weatherInfo.equals("强雷阵雨") | weatherInfo.equals("雷阵雨伴有冰雹")
+                |weatherInfo.equals("小雨") | weatherInfo.equals("中雨") |
+                weatherInfo.equals("大雨") | weatherInfo.equals("极端降雨") | weatherInfo.equals("毛毛雨/细雨") |
+                weatherInfo.equals("暴雨") | weatherInfo.equals("大暴雨") | weatherInfo.equals("特大暴雨")){
+            degreeText = "下雨啦，出门记得带伞哟";
+        } else {
+            //根据温度高低设置不同通知
+            int intDegree = Integer.parseInt(degree);
+            if (intDegree >= 28) {
+                degreeText = "喵呜，谁来帮我擦擦汗？";
+            } else if (intDegree >= 24 && intDegree < 28) {
+                degreeText = "喵呜，有点小热诶";
+            } else if (intDegree >= 21 && intDegree < 24) {
+                degreeText = "喵呜，这个温度我给好评";
+            } else if (intDegree >= 18 && intDegree < 21) {
+                degreeText = "喵呜，凉风习习伴我成长";
+            } else if (intDegree >= 15 && intDegree < 18) {
+                degreeText = "喵呜，温凉恭谦让";
+            } else if (intDegree >= 11 && intDegree < 15) {
+                degreeText = "喵呜，毛衣毛衣快上身";
+            } else if (intDegree >= 6 && intDegree < 11) {
+                degreeText = "喵呜，冷死宝宝了";
+            } else if (intDegree < 6) {
+                degreeText = "我去，太tm冷了。。。";
+            }
         }
+
 
         //通知栏天气
         NotificationManager manager = (NotificationManager) getSystemService(

@@ -24,6 +24,7 @@ import com.hengweather.android.gson.Weather;
 import com.hengweather.android.service.AutoUpdateService;
 import com.hengweather.android.util.HttpUtil;
 import com.hengweather.android.util.L;
+import com.hengweather.android.util.ShareUtils;
 import com.hengweather.android.util.StaticClass;
 import com.hengweather.android.util.Utility;
 
@@ -180,6 +181,11 @@ public class WeatherFragment extends Fragment {
         String degree = weather.now.temperature;
         String weatherInfo = weather.now.more.info;
 
+        //存储桌面小部件的天气数据
+        ShareUtils.putString(getActivity(), "cityName", cityName);
+        ShareUtils.putString(getActivity(), "degree", degree);
+        ShareUtils.putString(getActivity(), "weatherInfo", weatherInfo);
+
         // 存储通知栏的天气数据
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("notification", Context.MODE_PRIVATE).edit();
         editor.putString("cityName", cityName);
@@ -211,6 +217,11 @@ public class WeatherFragment extends Fragment {
             //白天天气状况图标
             ImageView info_image = view.findViewById(R.id.info_image);
             int infoCode = forecast.more.infocode;
+            //存储天气状态码
+            ShareUtils.putInt(getActivity(), "infoCode", infoCode);
+            String infocodeString = Integer.toString(infoCode);
+            //log打印天气码
+            L.i(TAG, infocodeString);
             switch (infoCode) {
                 case 100:
                     info_image.setBackgroundResource(R.mipmap.sunny);
