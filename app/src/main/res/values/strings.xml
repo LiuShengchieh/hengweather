@@ -6,4 +6,77 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--app名字-->
+    <string name="app_name">喵呜天气</string>
+    <!--感谢列表-->
+    <string name="intro_meowweather">没有你们，喵呜天气便不会存在。特此列出，以示感谢与敬意。</string>
+    <string name="litepal">Litepal for Android</string>
+    <string name="litepal_license">
+        https://github.com/LitePalFramework/LitePal
+    </string>
+    <string name="okhttp">OkHttp</string>
+    <string name="okhttp_license">
+        https://github.com/square/okhttp
+    </string>
+    <string name="glide">Glide</string>
+    <string name="glide_license">
+        https://github.com/bumptech/glide
+    </string>
+    <string name="citypicker">CityPicker</string>
+    <string name="citypicker_license">
+        https://github.com/zaaach/CityPicker
+    </string>
+    <string name="gson">gson</string>
+    <string name="gson_link">
+        https://github.com/google/gson
+    </string>
+    <string name="circleimageview">circleimageview</string>
+    <string name="circleimageview_link">
+        https://github.com/hdodenhof/CircleImageView
+    </string>
+    <string name="bugly">bugly</string>
+    <string name="bugly_link">
+        https://bugly.qq.com/v2/
+    </string>
+    <string name="dyhdm">《第一行代码》第二版 郭霖</string>
+    <string name="dyhdm_link">
+        http://blog.csdn.net/guolin_blog/
+    </string>
+    <string name="heweather">和风天气</string>
+    <string name="heweather_link">
+        https://www.heweather.com
+    </string>
+    <string name="xty">
+        亲爱的xty
+    </string>
+    <string name="sister">
+        亲爱的姐姐
+    </string>
+
+    <!--侧边栏-->
+    <string name="changecity">切换城市</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+
+    <!--关于-->
+    <string name="advice">产品建议</string>
+    <string name="contact">联系作者</string>
+    <string name="share">分享推荐</string>
+    <string name="thank">特别感谢</string>
+    <string name="update">版本更新</string>
+
+    <!--设置-->
+    <string name="noti">通知栏天气</string>
+
+    <!--天气页面-->
+    <string name="airquality">空气质量</string>
+    <string name="forecast">预报</string>
+    <string name="life_advice">生活建议</string>
+
+    <!--头像选取-->
+    <string name="photo">拍照</string>
+    <string name="picture">相册</string>
+    <string name="cancel">取消</string>
+    <string name="intro">喵呜天气，让你的猫咪不再着凉</string>
+
 </resources>
