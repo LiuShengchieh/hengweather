@@ -9,10 +9,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hengweather.android.BaseActivity;
 import com.hengweather.android.R;
+import com.hengweather.android.util.Utility;
 
 public class aboutActivity extends BaseActivity implements View.OnClickListener {
 
@@ -30,6 +32,9 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        //获取版本号
+        String versionName = Utility.getVersion(this);
+
         //产品建议
         TextView adviceText = (TextView) findViewById(R.id.advice);
         adviceText.setOnClickListener(this);
@@ -45,7 +50,9 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         //更新app
         TextView updateApp = (TextView) findViewById(R.id.updateApp);
         updateApp.setOnClickListener(this);
-
+        //版本号
+        TextView tv_version = (TextView) findViewById(R.id.tv_version);
+        tv_version.setText(versionName);
     }
 
     @Override
