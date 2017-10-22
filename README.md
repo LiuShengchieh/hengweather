@@ -131,6 +131,7 @@ Shengjie
 1. App 的名字正式定为"MeowWeather"
 2. 开发工具：Android Studio + Git
 3. 参考资料：《第一行代码》第二版、百度搜索、谷歌搜索
+4. 天气数据来源：和风天气  
 
 ## 功能：
 1. 启动页动画
@@ -141,6 +142,7 @@ Shengjie
 6. 通知栏天气
 7. 首页显示当前天气、未来三天预报、空气质量、生活建议
 8. 圆形头像自定义（拍照或从相册选择）  
+9. 桌面小部件显示当前城市的温度和天气  
 
 ## 安装：  
 1. 酷安应用市场下载链接：  
@@ -160,8 +162,7 @@ MeowWeather 在开发过程中使用了以下第三方开源组件，在此列�
 3. Glide https://github.com/bumptech/glide  
 4. CityPicker https://github.com/zaaach/CityPicker    
 5. CircleImageView https://github.com/hdodenhof/CircleImageView    
-6. 和风天气 https://www.heweather.com  
-7. gson https://github.com/google/gson  
+6. gson https://github.com/google/gson  
 
 ## 特别感谢：
 **亲爱的xty**  
