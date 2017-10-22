@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hengweather.android">
 
-    //bugly所需的权限：读取log文件
+    <!--bugly读取log的权限-->
     <uses-permission android:name="android.permission.READ_LOGS" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -35,49 +36,57 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!--主活动-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
 
+        <!--设置页-->
         <activity
             android:name=".ui.SettingActivity"
             android:screenOrientation="portrait"/>
+
+        <!--关于页-->
         <activity
             android:name=".ui.aboutActivity"
             android:screenOrientation="portrait"/>
 
+        <!--自动更新-->
         <service
             android:name=".service.AutoUpdateService"
             android:enabled="true"
             android:exported="true" />
 
+        <!--百度定位-->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
 
-        // 百度地图定位sdk
+        <!--百度定位-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="Rx9U5au81F0ni0uQtjL2LnkD2QpgbB0Y" />
 
-        // 高德地图定位sdk
+        <!--高德定位-->
         <meta-data android:name="com.amap.api.v2.apikey"
             android:value="860896030fc1165a2310f143ddf7dbce" />
 
+        <!--城市选择-->
         <activity
             android:name="com.zaaach.citypicker.CityPickerActivity"
             android:theme="@style/CityPicker.NoActionBar"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
-
+        <!--感谢-->
         <activity
             android:name=".ui.ThankActivity"
             android:screenOrientation="portrait" />
 
+        <!--欢迎页-->
         <activity
             android:name=".ui.WelcomeActivity"
             android:screenOrientation="portrait">
@@ -99,7 +108,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        //窗口小部件
+        <!--窗口小部件-->
         <receiver android:name=".widget.WeatherWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>

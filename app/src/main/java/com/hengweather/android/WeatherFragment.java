@@ -81,7 +81,7 @@ public class WeatherFragment extends Fragment {
     private TextView quality;
     private TextView suggestion;
 
-    //天气预报
+    //天气预报图片
     private ImageView info_image;
 
     @Override
@@ -180,11 +180,13 @@ public class WeatherFragment extends Fragment {
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature;
         String weatherInfo = weather.now.more.info;
+        int weatherCode = weather.now.more.code;
 
         //存储桌面小部件的天气数据
         ShareUtils.putString(getActivity(), "cityName", cityName);
         ShareUtils.putString(getActivity(), "degree", degree);
         ShareUtils.putString(getActivity(), "weatherInfo", weatherInfo);
+        ShareUtils.putInt(getActivity(), "weatherCode", weatherCode);
 
         // 存储通知栏的天气数据
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("notification", Context.MODE_PRIVATE).edit();
@@ -217,8 +219,6 @@ public class WeatherFragment extends Fragment {
             //白天天气状况图标
             ImageView info_image = view.findViewById(R.id.info_image);
             int infoCode = forecast.more.infocode;
-            //存储天气状态码
-            ShareUtils.putInt(getActivity(), "infoCode", infoCode);
             String infocodeString = Integer.toString(infoCode);
             //log打印天气码
             L.i(TAG, infocodeString);

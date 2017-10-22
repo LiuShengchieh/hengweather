@@ -36,6 +36,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        //标题栏
         sToolbar = (Toolbar) findViewById(R.id.toolbar);
         sToolbar.setTitle(R.string.setting);
         setSupportActionBar(sToolbar);
@@ -77,11 +78,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             }
         }
 
-
-        //通知栏天气
-        NotificationManager manager = (NotificationManager) getSystemService(
-                NOTIFICATION_SERVICE);
-        manager.cancel(1);
         MySwitch = (Switch) findViewById(R.id.MySwitch);
         MySwitch.setOnClickListener(this);
 
@@ -122,16 +118,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         manager.cancel(1);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
-
+    //点击事件
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -146,6 +133,17 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 }
                 break;
         }
+    }
+
+    //退出
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 
 }

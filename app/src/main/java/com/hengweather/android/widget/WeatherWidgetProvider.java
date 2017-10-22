@@ -41,10 +41,10 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
         String degree = ShareUtils.getString(context, "degree", "");
         String weatherInfo = ShareUtils.getString(context, "weatherInfo", "");
         //获取天气状况代码
-        int infoCode = ShareUtils.getInt(context, "infoCode", 999);
+        int weatherCode = ShareUtils.getInt(context, "weatherCode", 999);
         //log打印天气码
-        String infocodeString = Integer.toString(infoCode);
-        L.i(TAG, infocodeString);
+        String weatherCodeString = Integer.toString(weatherCode);
+        L.i(TAG, weatherCodeString);
 
         //设置remoteviews
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_weather);
@@ -53,7 +53,7 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
         remoteViews.setTextViewText(R.id.tv_temp, degree + "°C");
 
         //根据天气状况代码显示不同图片
-        switch (infoCode) {
+        switch (weatherCode) {
             case 100:
                 remoteViews.setImageViewResource(R.id.iv_weather, R.mipmap.sunny);
                 break;

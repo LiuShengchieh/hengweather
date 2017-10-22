@@ -21,6 +21,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -424,7 +425,7 @@ public class MainActivity extends BaseActivity {
             transaction.add(R.id.myCoor, weatherFragment).commitAllowingStateLoss();
         }
     }
-
+/*
     //连按两次退出app
     private long exitTime = 0;
     @Override
@@ -442,6 +443,19 @@ public class MainActivity extends BaseActivity {
                 overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
             }
         }
-    }
+    }*/
 
+    //按一次返回键退到桌面，程序后台运行
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="drawer_open">Open drawer</string>
-    <string name="drawer_close">Close drawer</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <!--app名字-->
     <string name="app_name">MeowWeather</string>
     <!--感谢列表-->
@@ -76,8 +69,8 @@
     <string name="life_advice">Suggestion</string>
 
     <!--头像选取-->
-    <string name="photo">Take a Picture</string>
-    <string name="picture">Photo Album</string>
+    <string name="photo">Camera</string>
+    <string name="picture">Album</string>
     <string name="cancel">Cancel</string>
     <string name="intro">MeowWeather, don\'t catch a cold any more.</string>
 

@@ -6,7 +6,7 @@
     android:layout_height="180dp"
     android:padding="10dp"
     android:background="@color/colorPrimary">
-    
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/icon_image"
         android:layout_width="80dp"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/intro"
-        android:textColor="#ffffff"
+        android:textColor="@android:color/white"
         android:textSize="14sp" />
 
 </RelativeLayout>

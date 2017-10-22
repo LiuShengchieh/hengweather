@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:text="乌鲁木齐"
+            android:text="上海"
             android:textSize="13sp"/>
 
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:id="@+id/tv_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="晴转多云"
+                android:text="晴"
                 android:textSize="8sp"/>
 
             <TextView
@@ -50,7 +50,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="24℃"
+                android:text="26℃"
                 android:textSize="8sp"/>
 
         </LinearLayout>

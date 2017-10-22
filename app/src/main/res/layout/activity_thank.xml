@@ -25,7 +25,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/intro_meowweather"
                 android:textSize="16sp"
-                android:textColor="#B3B3B3"
+                android:textColor="@color/thankColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/xty"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -43,7 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/sister"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/litepal"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/litepal_license"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/okhttp"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/okhttp_license"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/glide"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -97,7 +97,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/glide_license"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/citypicker"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -115,7 +115,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/citypicker_license"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -124,7 +124,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/gson"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -133,7 +133,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/gson_link"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -142,7 +142,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/circleimageview"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -151,7 +151,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/circleimageview_link"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
 
@@ -161,7 +161,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/bugly"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -170,7 +170,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/bugly_link"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -179,7 +179,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/dyhdm"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -188,7 +188,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/dyhdm_link"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -197,7 +197,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/heweather"
                 android:textSize="20sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
             <TextView
@@ -206,7 +206,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/heweather_link"
                 android:textSize="13sp"
-                android:textColor="#848484"
+                android:textColor="@color/thankListColor"
                 android:padding="10dp"/>
 
         </LinearLayout>

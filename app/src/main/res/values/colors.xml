@@ -9,4 +9,7 @@
     <color name="textColor">#636363</color>
     <color name="titleColor">#BABABA</color>
     <color name="background_gray">#D1D1D1</color>
+    <color name="thankColor">#B3B3B3</color>
+    <color name="thankListColor">#848484</color>
+    <color name="dialog_background">#66000000</color>
 </resources>

@@ -7,7 +7,7 @@ def releaseTime() {
 
 //设置发布时的版本号
 def getVersionName(){
-    return "1.1"
+    return "1.2"
 }
 
 android {
@@ -17,7 +17,7 @@ android {
         applicationId "com.hengweather.android"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2
+        versionCode 3
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {

@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hengweather.android.BaseActivity;
@@ -19,6 +18,9 @@ import com.hengweather.android.util.Utility;
 public class aboutActivity extends BaseActivity implements View.OnClickListener {
 
     public Toolbar aToolbar;
+
+    //版本号
+    private String versionName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //获取版本号
-        String versionName = Utility.getVersion(this);
+        versionName = Utility.getVersion(this);
 
         //产品建议
         TextView adviceText = (TextView) findViewById(R.id.advice);
@@ -52,7 +54,7 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
         updateApp.setOnClickListener(this);
         //版本号
         TextView tv_version = (TextView) findViewById(R.id.tv_version);
-        tv_version.setText(versionName);
+        tv_version.setText("Current Version: " + versionName);
     }
 
     @Override
@@ -62,7 +64,7 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
                 try {
                     Intent data = new Intent(Intent.ACTION_SENDTO);
                     data.setData(Uri.parse("mailto: shengjiedev@foxmail.com"));
-                    data.putExtra(Intent.EXTRA_SUBJECT, "产品建议（MeowWeather）");
+                    data.putExtra(Intent.EXTRA_SUBJECT, "产品建议(MeowWeather" + versionName + ")");
                     startActivity(data);
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
@@ -105,7 +107,6 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

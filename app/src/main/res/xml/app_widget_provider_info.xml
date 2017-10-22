@@ -4,5 +4,5 @@
     android:initialLayout="@layout/widget_weather"
     android:minHeight="40dp"
     android:minWidth="110dp"
-    android:previewImage="@drawable/widgetpreview"
-    android:updatePeriodMillis="864000"/>
+    android:previewImage="@mipmap/logo"
+    android:updatePeriodMillis="3600000"/>
