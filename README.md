@@ -24,10 +24,10 @@ MeowWeather 第二版正式发布！
 App Name: MeowWeather    
 Release Version: 2.0  
 
-Change Log:
-1. 新增圆形头像自定义功能（拍照或从相册选择）
-2. 关于页新增分享功能
-3. 天气数据页取消now之外的点击分享
+Change Log:  
+1. 新增圆形头像自定义功能（拍照或从相册选择）  
+2. 关于页新增分享功能  
+3. 天气数据页取消now之外的点击分享  
 
 <del> Download Link: [MeowWeather](https://github.com/LiuShengchieh/hengweather/tree/master/downloadApk) </del>
 
@@ -65,12 +65,12 @@ MeowWeather（喵呜天气）酷安市场第二版发布！
 App Name: MeowWeather  
 Release Version: 1.1  
 
-Change Log:
-1. 首页天气数据页优化，更加活泼
-2. 空气质量根据pm2.5指数分等级显示优、良、轻污染、中污染、重污染、严重污染，更加有用
-3. 字体颜色加深，更加醒目
-4. 自动定位精确至区县，更加准确
-5. 关于页新增「分享推荐」和「更新APP」
+Change Log:  
+1. 首页天气数据页优化，更加活泼  
+2. 空气质量根据pm2.5指数分等级显示优、良、轻污染、中污染、重污染、严重污染，更加有用  
+3. 字体颜色加深，更加醒目  
+4. 自动定位精确至区县，更加准确	  
+5. 关于页新增「分享推荐」和「更新APP」  
 
 Download Link: [MeowWeather](https://www.coolapk.com/apk/com.hengweather.android)    
 
@@ -104,6 +104,29 @@ Shengjie
 
 ***
 
+喵呜天气 新版本来袭！～
+
+App Name: 喵呜天气（MeowWeather）  
+Release Version: 1.2  
+
+Change Log:  
+1. 新增桌面小部件，实时显示天气状况  
+2. UI优化，更加简约大气  
+3. 通知栏天气bug修改  
+4. 关于页去除“查看源码”，新增当前版本号显示  
+5. 新增英文locale  
+6. 余不一一，欢迎把玩  
+
+欢迎下载使用！～  
+如有任何意见或建议，请通过“喵呜天气-关于-产品建议”，发我邮件～
+
+多谢:-)
+
+Shengjie  
+2017.10.22
+
+***
+
 ## 说明：
 1. App 的名字正式定为"MeowWeather"
 2. 开发工具：Android Studio + Git
@@ -126,17 +149,19 @@ Shengjie
 `http://app.hicloud.com/app/C100105467`  
 
 ## 截图：
-![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/f.png)
-![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/g.png)
-![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/h.png)
+![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/x.png)
+![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/y.png)
+![MeowWeather-Screenshot](https://github.com/LiuShengchieh/hengweather/blob/master/images/z.png)
 
 ## 感谢：
-MeowWeather 在开发过程中使用了以下第三方开源类库、组件，在此列出表示感谢与敬意。
-1. Litepal for Android https://github.com/LitePalFramework/LitePal
-2. OkHttp https://github.com/square/okhttp
-3. Glide https://github.com/bumptech/glide
-4. CityPicker https://github.com/zaaach/CityPicker  
-5. CircleImageView https://github.com/hdodenhof/CircleImageView  
+MeowWeather 在开发过程中使用了以下第三方开源组件，在此列出表示感谢与敬意。  
+1. Litepal for Android https://github.com/LitePalFramework/LitePal  
+2. OkHttp https://github.com/square/okhttp  
+3. Glide https://github.com/bumptech/glide  
+4. CityPicker https://github.com/zaaach/CityPicker    
+5. CircleImageView https://github.com/hdodenhof/CircleImageView    
+6. 和风天气 https://www.heweather.com  
+7. gson https://github.com/google/gson  
 
 ## 特别感谢：
 **亲爱的xty**  
