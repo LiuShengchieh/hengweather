@@ -94,17 +94,21 @@ public class MainActivity extends BaseActivity {
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!permissionList.isEmpty()) {
-            String [] permissions = permissionList.toArray(new String[permissionList.size()]);
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             ActivityCompat.requestPermissions(MainActivity.this, permissions, 1);
         } else {
+            //请求定位
             requestLocation();
         }
 
-        initNavigation(); // 初始化侧滑菜单
-        initToolBar(); // 初始化 ToolBar
+        // 初始化侧滑菜单
+        initNavigation();
+        // 初始化 ToolBar
+        initToolBar();
 
     }
 
+    //请求定位
     private void requestLocation() {
         initLocation(); // 初始化百度地图定位
         mLocationClient.start(); //开始定位
@@ -135,19 +139,49 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        String weatherId = getIntent().getStringExtra("weather_id");
-        if (weatherId != null){
-            WeatherFragment weatherFragment = new WeatherFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("weather_id", weatherId);
-            weatherFragment.setArguments(bundle);
-            fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.myCoor, weatherFragment).commit();
+    //初始化百度定位
+    private void initLocation() {
+
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+
+        option.setIsNeedAddress(true);
+        //可选，设置是否需要地址信息，默认不需要
+
+        option.setOpenGps(true);
+        //可选，默认false,设置是否使用gps
+
+        mLocationClient.setLocOption(option);
+    }
+
+    //定位
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(final BDLocation location) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (location != null) {
+                        String city = location.getCity();
+                        L.i("城市：", city);
+                        String district = location.getDistrict();
+                        L.i("区县：", district);
+                        if (!TextUtils.isEmpty(district)) {
+                            L.i("定位成功", "当前区县为" + district);
+                            toShowWeather(district);
+                            Toast.makeText(MainActivity.this, "当前位置：" + district, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-(", Toast.LENGTH_SHORT).show();
+                            //定位失败加载默认城市
+                            String cityName = "上海";
+                            toShowWeather(cityName);
+                        }
+                        //停止定位
+                        mLocationClient.stop();
+                    }
+                }
+            });
         }
     }
 
@@ -166,6 +200,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            //打开侧滑菜单
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
@@ -259,8 +294,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //切换城市
-        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
-            if (data != null){
+        if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK) {
+            if (data != null) {
                 String cityName = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
                 toShowWeather(cityName);
             }
@@ -370,53 +405,7 @@ public class MainActivity extends BaseActivity {
         Utility.putImageToShare(this, icon_image);
     }
 
-    //初始化百度定位
-    private void initLocation(){
-
-        LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-
-        option.setIsNeedAddress(true);
-        //可选，设置是否需要地址信息，默认不需要
-
-        option.setOpenGps(true);
-        //可选，默认false,设置是否使用gps
-
-        mLocationClient.setLocOption(option);
-    }
-
-    //定位
-    public class MyLocationListener implements BDLocationListener {
-        @Override
-        public void onReceiveLocation(final BDLocation location) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (location != null) {
-                        String city = location.getCity();
-                        L.i("城市：", city);
-                        String district = location.getDistrict();
-                        L.i("区县：", district);
-                        if (!TextUtils.isEmpty(district)) {
-                            L.i("定位成功", "当前区县为" + district);
-                            toShowWeather(district);
-                            Toast.makeText(MainActivity.this, "当前位置：" + district, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, "定位失败只能看上海的天气啦:-(", Toast.LENGTH_SHORT).show();
-                            //定位失败加载默认城市
-                            String cityName = "上海";
-                            toShowWeather(cityName);
-                        }
-                        //停止定位
-                        mLocationClient.stop();
-                    }
-                }
-            });
-        }
-    }
-
-    //去显示天气数据
+    //加载WeatherFragment
     private void toShowWeather(String cityName) {
         weatherId = cityName;
         if (weatherId != null) {
@@ -426,9 +415,10 @@ public class MainActivity extends BaseActivity {
             weatherFragment.setArguments(bundle);
             fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(R.id.myCoor, weatherFragment).commitAllowingStateLoss();
+            transaction.replace(R.id.myCoor, weatherFragment).commitAllowingStateLoss();
         }
     }
+
 /*
     //连按两次退出app
     private long exitTime = 0;
@@ -462,4 +452,5 @@ public class MainActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

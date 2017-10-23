@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,66 +38,42 @@ import okhttp3.Response;
 
 public class WeatherFragment extends Fragment {
 
-    private Toolbar mToolbar;
-
-    public SwipeRefreshLayout swipeRefresh;
-
-    private String weatherId;
-
-    private ScrollView weatherLayout;
-
-    private TextView degreeText;
-
-    private TextView weatherInfoText;
-
-    private LinearLayout forecastLayout;
-
-    private TextView aqiText;
-
-    private TextView pm25Text;
-
-    private TextView sportText;
-
-    private TextView drsgText;
-
-    private TextView fluText;
-
-    private TextView uvText;
-
-    private TextView cityText;
-
-    private TextView updateText;
-
     public static final String TAG = "WeatherFragment";
 
-    public CardView nowCardView;
-    public CardView forecastCardView;
-    public CardView aqiCardView;
-    public CardView suggestionCardView;
+    //下拉刷新
+    public SwipeRefreshLayout swipeRefresh;
 
-    //天气质量
+    //天气数据ID
+    private String weatherId;
+    private String oldWeatherId;
+
+    //滑动view
+    private ScrollView weatherLayout;
+
+    //当前天气
+    public CardView nowCardView;
+    private TextView degreeText;
+    private TextView weatherInfoText;
+    private TextView cityText;
+    private TextView updateText;
+
+    //预报
+    public CardView forecastCardView;
+    private LinearLayout forecastLayout;
+
+    //空气质量
+    public CardView aqiCardView;
+    private TextView aqiText;
+    private TextView pm25Text;
     private TextView quality;
     private TextView suggestion;
 
-    //天气预报图片
-    private ImageView info_image;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (context instanceof MainActivity){
-            MainActivity mainActivity = (MainActivity) context;
-            mToolbar = (Toolbar) mainActivity.findViewById(R.id.toolbar);
-        }
-        L.d(TAG, "onAttach");
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        L.d(TAG, "onCreate");
-    }
+    //生活建议
+    public CardView suggestionCardView;
+    private TextView sportText;
+    private TextView drsgText;
+    private TextView fluText;
+    private TextView uvText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,25 +94,42 @@ public class WeatherFragment extends Fragment {
         swipeRefresh = view.findViewById(R.id.swipe_refresh);
         // 下拉刷新进度条的颜色
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
-
         quality = view.findViewById(R.id.quality);
         suggestion = view.findViewById(R.id.suggestion);
-
-        info_image = view.findViewById(R.id.info_image);
-
-        //当前天气
         nowCardView = view.findViewById(R.id.cardView_now);
-
         forecastCardView = view.findViewById(R.id.cardView_forecast);
         aqiCardView = view.findViewById(R.id.cardView_aqi);
         suggestionCardView = view.findViewById(R.id.cardView_suggestion);
 
-        weatherId = (String) getArguments().get("weather_id");
-        weatherLayout.setVisibility(View.INVISIBLE);
-        if (weatherId != null) {
+        /*
+        * 1、进入时判断是否有存储的值
+        * 2、若没有，则用新传入的weatherID去获取并显示天气数据
+        * 3、若有，则跟新传入的weatherID对比是否一致
+        * 4、若一致，则直接显示天气数据
+        * 5、若不一致，则用新传入的weatherID去获取并显示天气数据
+        * */
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        final String weatherString = prefs.getString("weather", null);
+        if (weatherString != null) {
+            Weather weather = Utility.handleWeatherResponse(weatherString);
+            oldWeatherId = weather.basic.weatherId;
+            if (!oldWeatherId.equals(weatherId)) {
+                //获取bundle中的weather id
+                weatherId = (String) getArguments().get("weather_id");
+                //数据加载前隐藏
+                weatherLayout.setVisibility(View.INVISIBLE);
+                requestWeather(weatherId);
+            } else {
+                showWeatherInfo(weather);
+            }
+        } else {
+            weatherId = (String) getArguments().get("weather_id");
+            //数据加载前隐藏
+            weatherLayout.setVisibility(View.INVISIBLE);
             requestWeather(weatherId);
         }
 
+        //下拉刷新
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -154,28 +145,10 @@ public class WeatherFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        L.d(TAG, "onActivityCreated");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        String weatherId = getActivity().getIntent().getStringExtra("weather_id");
-        if (weatherId != null) {
-            requestWeather(weatherId);
-        } else {
-            L.d(TAG,"WeatherId is null");
-        }
-        L.d(TAG, "onResume");
-    }
-
     /*
 * 处理并展示 Weather 实体类中的数据
 * */
-    private void showWeatherInfo(Weather weather) {
+    public void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];
         String degree = weather.now.temperature;
@@ -188,7 +161,7 @@ public class WeatherFragment extends Fragment {
         ShareUtils.putString(getActivity(), "weatherInfo", weatherInfo);
         ShareUtils.putInt(getActivity(), "weatherCode", weatherCode);
 
-        // 存储通知栏的天气数据
+        //存储通知栏的天气数据
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("notification", Context.MODE_PRIVATE).edit();
         editor.putString("cityName", cityName);
         editor.putString("degree", degree);
@@ -198,8 +171,7 @@ public class WeatherFragment extends Fragment {
         //当前天气
         cityText.setText(cityName);
         updateText.setText("Update Time - " + updateTime);
-        degreeText.setText(degree + "" +
-                "");
+        degreeText.setText(degree + "°C");
         weatherInfoText.setText(weatherInfo);
 
         //三天预报
@@ -419,13 +391,13 @@ public class WeatherFragment extends Fragment {
         drsgText.setText(drsg);
         fluText.setText(flu);
         uvText.setText(uv);
+        //数据加载后显示
         weatherLayout.setVisibility(View.VISIBLE);
 
-        // 后台自动更新天气
+        //自动更新
         Intent intent = new Intent(getActivity(), AutoUpdateService.class);
-        getActivity().startService(intent);
+        startActivity(intent);
     }
-
 
     /*;
     * 根据天气 id 请求城市天气信息
@@ -435,6 +407,7 @@ public class WeatherFragment extends Fragment {
         String weatherUrl = "https://free-api.heweather.com/v5/weather?city=" +
                 weatherId + "&key=" + StaticClass.HE_WEATHER_KEY;
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
+            //获取失败
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -443,11 +416,12 @@ public class WeatherFragment extends Fragment {
                     public void run() {
                         Toast.makeText(getActivity(), "获取天气信息失败",
                                 Toast.LENGTH_SHORT).show();
+                        //停止刷新
                         swipeRefresh.setRefreshing(false);
                     }
                 });
             }
-
+            //获取成功
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
@@ -466,12 +440,12 @@ public class WeatherFragment extends Fragment {
                             Toast.makeText(getActivity(), "获取天气信息失败:-(",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        //停止刷新
                         swipeRefresh.setRefreshing(false);
                     }
                 });
             }
         });
-
     }
 
 }
