@@ -47,11 +47,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
 
+    //选择城市
     private static final int REQUEST_CODE_PICK_CITY = 0;
-
-    public DrawerLayout drawerLayout;
-
-    public NavigationView navigationView;
 
     private String weatherId;
 
@@ -59,15 +56,18 @@ public class MainActivity extends BaseActivity {
 
     private FragmentManager fragmentManager;
 
-    public LocationClient mLocationClient;
-
-    public BDLocationListener myListener = new MyLocationListener();
-
+    //侧滑菜单
+    public DrawerLayout drawerLayout;
+    public NavigationView navigationView;
     private CircleImageView icon_image;
     private CustomDialog dialog;
     private Button btn_camera;
     private Button btn_picture;
     private Button btn_cancel;
+
+    //百度定位
+    public LocationClient mLocationClient;
+    public BDLocationListener myListener = new MyLocationListener();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -110,6 +110,7 @@ public class MainActivity extends BaseActivity {
         mLocationClient.start(); //开始定位
     }
 
+    //定位权限申请结果
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -150,6 +151,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    //初始化菜单栏
     private void initToolBar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -171,6 +173,7 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
+    //初始化侧滑菜单
     private void initNavigation() {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -255,6 +258,7 @@ public class MainActivity extends BaseActivity {
     //重写onActivityResult方法
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //切换城市
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
             if (data != null){
                 String cityName = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
@@ -382,8 +386,8 @@ public class MainActivity extends BaseActivity {
         mLocationClient.setLocOption(option);
     }
 
+    //定位
     public class MyLocationListener implements BDLocationListener {
-
         @Override
         public void onReceiveLocation(final BDLocation location) {
             runOnUiThread(new Runnable() {

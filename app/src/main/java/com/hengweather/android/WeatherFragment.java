@@ -198,7 +198,8 @@ public class WeatherFragment extends Fragment {
         //当前天气
         cityText.setText(cityName);
         updateText.setText("Update Time - " + updateTime);
-        degreeText.setText(degree + "°C");
+        degreeText.setText(degree + "" +
+                "");
         weatherInfoText.setText(weatherInfo);
 
         //三天预报
