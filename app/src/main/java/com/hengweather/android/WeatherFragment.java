@@ -396,7 +396,7 @@ public class WeatherFragment extends Fragment {
 
         //自动更新
         Intent intent = new Intent(getActivity(), AutoUpdateService.class);
-        startActivity(intent);
+        getActivity().startService(intent);
     }
 
     /*;

@@ -53,7 +53,7 @@
             android:name=".ui.aboutActivity"
             android:screenOrientation="portrait"/>
 
-        <!--自动更新-->
+        <!--后台自动更新-->
         <service
             android:name=".service.AutoUpdateService"
             android:enabled="true"
