@@ -15,7 +15,7 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.hengweather.android"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 3
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
