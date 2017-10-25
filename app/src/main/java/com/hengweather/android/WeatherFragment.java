@@ -146,8 +146,8 @@ public class WeatherFragment extends Fragment {
     }
 
     /*
-* 处理并展示 Weather 实体类中的数据
-* */
+                                * 处理并展示 Weather 实体类中的数据
+                                * */
     public void showWeatherInfo(Weather weather) {
         String cityName = weather.basic.cityName;
         String updateTime = weather.basic.update.updateTime.split(" ")[1];

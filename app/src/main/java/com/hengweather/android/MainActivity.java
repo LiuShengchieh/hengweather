@@ -31,6 +31,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.hengweather.android.service.AutoUpdateService;
 import com.hengweather.android.ui.SettingActivity;
 import com.hengweather.android.ui.aboutActivity;
 import com.hengweather.android.util.L;
