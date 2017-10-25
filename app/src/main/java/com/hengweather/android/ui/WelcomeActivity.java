@@ -2,6 +2,7 @@ package com.hengweather.android.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -10,7 +11,7 @@ import com.hengweather.android.BaseActivity;
 import com.hengweather.android.MainActivity;
 import com.hengweather.android.R;
 
-public class WelcomeActivity extends BaseActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     private ImageView welcomeImg = null;
 

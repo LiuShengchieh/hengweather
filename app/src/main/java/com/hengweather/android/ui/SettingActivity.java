@@ -23,7 +23,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     private Switch MySwitch;
 
-    public Toolbar sToolbar;
+    public Toolbar toolbar;
 
     //天气数据
     private String degreeText;
@@ -37,9 +37,9 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_setting);
 
         //标题栏
-        sToolbar = (Toolbar) findViewById(R.id.toolbar);
-        sToolbar.setTitle(R.string.setting);
-        setSupportActionBar(sToolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.setting);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 

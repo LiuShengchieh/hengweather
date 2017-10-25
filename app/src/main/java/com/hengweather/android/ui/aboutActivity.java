@@ -17,7 +17,7 @@ import com.hengweather.android.util.Utility;
 
 public class aboutActivity extends BaseActivity implements View.OnClickListener {
 
-    public Toolbar aToolbar;
+    public Toolbar toolbar;
 
     //版本号
     private String versionName;
@@ -28,9 +28,9 @@ public class aboutActivity extends BaseActivity implements View.OnClickListener 
 
         setContentView(R.layout.activity_about);
 
-        aToolbar = (Toolbar) findViewById(R.id.toolbar);
-        aToolbar.setTitle(R.string.about);
-        setSupportActionBar(aToolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.about);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 

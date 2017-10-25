@@ -10,20 +10,20 @@ import com.hengweather.android.R;
 
 public class ThankActivity extends BaseActivity {
 
-    public Toolbar oToolbar;
+    public Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thank);
 
-        oToolbar = (Toolbar) findViewById(R.id.toolbar);
-        oToolbar.setTitle(R.string.thank);
-        setSupportActionBar(oToolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.thank);
+        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        oToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
