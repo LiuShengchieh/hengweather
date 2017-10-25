@@ -393,10 +393,6 @@ public class WeatherFragment extends Fragment {
         uvText.setText(uv);
         //数据加载后显示
         weatherLayout.setVisibility(View.VISIBLE);
-
-        //自动更新
-        Intent intent = new Intent(getActivity(), AutoUpdateService.class);
-        getActivity().startService(intent);
     }
 
     /*;
@@ -436,6 +432,9 @@ public class WeatherFragment extends Fragment {
                             editor.putString("weather", responseText);
                             editor.apply();
                             showWeatherInfo(weather);
+                            //自动更新
+                            Intent intent = new Intent(getActivity(), AutoUpdateService.class);
+                            getActivity().startService(intent);
                         } else {
                             Toast.makeText(getActivity(), "获取天气信息失败:-(",
                                     Toast.LENGTH_SHORT).show();
