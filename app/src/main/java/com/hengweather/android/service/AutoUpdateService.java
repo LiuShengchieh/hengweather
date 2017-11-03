@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
+import com.hengweather.android.WeatherFragment;
 import com.hengweather.android.gson.Weather;
 import com.hengweather.android.util.HttpUtil;
 import com.hengweather.android.util.StaticClass;

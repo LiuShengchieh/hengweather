@@ -75,12 +75,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
-        mLocationClient.registerLocationListener(myListener);
+        mLocationClient = new LocationClient(getApplicationContext());
         //注册监听函数
+        mLocationClient.registerLocationListener(myListener);
 
-        // 请求位置权限、电话权限、存储权限
+        //请求位置权限、电话权限、存储权限
         List<String> permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.
                 permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -142,21 +142,17 @@ public class MainActivity extends AppCompatActivity {
 
     //初始化百度定位
     private void initLocation() {
-
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
-
         option.setIsNeedAddress(true);
         //可选，设置是否需要地址信息，默认不需要
-
         option.setOpenGps(true);
         //可选，默认false,设置是否使用gps
-
         mLocationClient.setLocOption(option);
     }
 
-    //定位
+    //定位结果
     public class MyLocationListener implements BDLocationListener {
         @Override
         public void onReceiveLocation(final BDLocation location) {
@@ -211,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
 
     //初始化侧滑菜单
     private void initNavigation() {
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //引入header和menu
@@ -255,16 +250,14 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
         //读取头像
         Utility.getImageFromShare(this, icon_image);
-
         //dialog
         dialog = new CustomDialog(this, 100, 100, R.layout.dialog_photo, R.style.Theme_dialog,
                 Gravity.BOTTOM, R.style.pop_anim_style);
         //屏幕外点击无效
         dialog.setCancelable(false);
-
+        //打开相机
         btn_camera = dialog.findViewById(R.id.btn_camera);
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 toCamera();
             }
         });
-
+        //打开相册
         btn_picture = dialog.findViewById(R.id.btn_picture);
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -280,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                 toPicture();
             }
         });
-
+        //取消
         btn_cancel = dialog.findViewById(R.id.btn_cancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
     }
 
     //重写onActivityResult方法
@@ -301,7 +293,6 @@ public class MainActivity extends AppCompatActivity {
                 toShowWeather(cityName);
             }
         }
-
         //圆形头像
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
@@ -322,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-
     }
 
     public static final String PHOTO_IMAGE_FILE_NAME = "fileImg.jpg";
@@ -333,7 +323,6 @@ public class MainActivity extends AppCompatActivity {
 
     //跳转相机
     private void toCamera() {
-
         File outputImage = new File(this.getExternalCacheDir(),
                 PHOTO_IMAGE_FILE_NAME);
         try {
@@ -344,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        //判断SDK，使用不同的Uri获取方法
         if (Build.VERSION.SDK_INT >= 24) {
             imageUri = FileProvider.getUriForFile(this,
                     "com.hengweather.android.fileprovider", outputImage);
@@ -356,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, CAMERA_REQUEST_CODE);
         dialog.dismiss();
-
     }
 
     //跳转相册
@@ -372,7 +360,6 @@ public class MainActivity extends AppCompatActivity {
         if (uri == null) {
             return;
         }
-
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
