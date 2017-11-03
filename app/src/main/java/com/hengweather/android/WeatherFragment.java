@@ -434,8 +434,7 @@ public class WeatherFragment extends Fragment {
                             editor.apply();
                             showWeatherInfo(weather);
                             //自动更新
-                            Intent intent = new Intent(getActivity(), AutoUpdateService.class);
-                            getActivity().startService(intent);
+                            getActivity().startService(new Intent(getActivity(), AutoUpdateService.class));
                         } else {
                             Toast.makeText(getActivity(), "获取天气信息失败:-(",
                                     Toast.LENGTH_SHORT).show();
