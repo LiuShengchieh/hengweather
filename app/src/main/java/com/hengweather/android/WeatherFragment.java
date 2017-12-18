@@ -201,7 +201,9 @@ public class WeatherFragment extends Fragment {
             TextView temperature_text = view.findViewById(R.id.temperature_text);
 
             //日期
-            dateText.setText(forecast.date);
+            String WeatherDate = forecast.date;
+            String weekDate = Utility.getDate(WeatherDate);
+            dateText.setText(weekDate);
             //天气状况
             infoText.setText(forecast.more.info);
             //最高温最低温

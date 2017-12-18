@@ -17,6 +17,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by liushengjie on 2017/8/14.
@@ -88,6 +91,29 @@ public class Utility {
         String str = Hour;
         String weatherHour = str.substring(10);
         return weatherHour;
+    }
+
+    /**
+     * 日期转换成星期
+     * @return weekDate;
+     */
+    public static String getDate(String WeatherDate) {
+        // 定义日期格式
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = format.parse(WeatherDate);// 将字符串转换为日期
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String weekDate = getWeek(date);
+        return weekDate;
+    }
+
+    public static String getWeek(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        String week = sdf.format(date);
+        return week;
     }
 
 }
