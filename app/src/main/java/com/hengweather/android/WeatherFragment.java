@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +60,10 @@ public class WeatherFragment extends Fragment {
     private TextView cityText;
     private TextView updateText;
 
+    //三小时预报
+    public CardView hourForeCardView;
+    private RecyclerView recyclerView;
+
     //预报
     public CardView forecastCardView;
     private LinearLayout forecastLayout;
@@ -101,6 +107,9 @@ public class WeatherFragment extends Fragment {
         forecastCardView = view.findViewById(R.id.cardView_forecast);
         aqiCardView = view.findViewById(R.id.cardView_aqi);
         suggestionCardView = view.findViewById(R.id.cardView_suggestion);
+        //三小时预报
+        hourForeCardView = view.findViewById(R.id.cardView_hourlyForecast);
+        recyclerView = view.findViewById(R.id.recycler_hour_forecast);
 
         /*
         * 1、进入时判断是否有存储的值
@@ -175,6 +184,13 @@ public class WeatherFragment extends Fragment {
         degreeText.setText(degree + "°C");
         weatherInfoText.setText(weatherInfo);
 
+        //三小时预报
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        HourlyForecastAdapter adapter = new HourlyForecastAdapter(weather.hourlyForecastList);
+        recyclerView.setAdapter(adapter);
+
         //三天预报
         forecastLayout.removeAllViews();
         for (Forecast forecast : weather.forecastList) {
@@ -183,6 +199,7 @@ public class WeatherFragment extends Fragment {
             TextView dateText = view.findViewById(R.id.date_text);
             TextView infoText = view.findViewById(R.id.info_text);
             TextView temperature_text = view.findViewById(R.id.temperature_text);
+
             //日期
             dateText.setText(forecast.date);
             //天气状况

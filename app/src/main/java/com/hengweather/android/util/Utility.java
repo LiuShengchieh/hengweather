@@ -80,4 +80,14 @@ public class Utility {
         }
     }
 
+    /**
+     * 截取小时天气时间 eg: 2017-2-16 18:00
+     * 保留18:00
+     */
+    public static String getHour(String Hour) {
+        String str = Hour;
+        String weatherHour = str.substring(10);
+        return weatherHour;
+    }
+
 }

@@ -65,7 +65,7 @@
 
     <!--天气页面-->
     <string name="airquality">空气质量</string>
-    <string name="forecast">预报</string>
+    <string name="forecast">三天预报</string>
     <string name="life_advice">生活建议</string>
 
     <!--头像选取-->

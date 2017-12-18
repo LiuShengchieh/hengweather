@@ -23,6 +23,8 @@
 
                 <include layout="@layout/now" />
 
+                <include layout="@layout/forecast_hour" />
+
                 <include layout="@layout/forecast" />
 
                 <include layout="@layout/aqi" />
