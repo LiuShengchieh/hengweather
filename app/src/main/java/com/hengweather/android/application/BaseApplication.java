@@ -21,6 +21,6 @@ public class BaseApplication extends Application {
 
         //初始化bugly
         //测试阶段建议设置成true，发布时设置为false。
-        CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APP_ID, false);
+        CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APP_ID, true);
     }
 }
